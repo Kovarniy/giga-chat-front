@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {environment} from "../environments/environment";
-import {ConfigurationService} from "./services/configuration.service";
 import {ENVIRONMENT} from "./services/environment.service";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import {ENVIRONMENT} from "./services/environment.service";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [{ provide: ENVIRONMENT, useValue: environment }],
   bootstrap: [AppComponent]

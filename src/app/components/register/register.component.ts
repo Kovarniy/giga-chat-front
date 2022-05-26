@@ -10,7 +10,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
 
-  user: FormGroup;
+  user: User;
 
   constructor(private userService: UserService) {
   }
@@ -20,21 +20,19 @@ export class RegisterComponent implements OnInit {
   }
 
   private _createUserForm() {
-    this.user = new FormGroup({
-      login: new FormControl(null),
-      name: new FormControl(null),
-      password: new FormControl(null)
-    })
+    this.user = {
+      name: '',
+      login: '',
+      password: ''
+    };
   }
 
-  register() {
-    const _user: User = {
-      name: this.user.get('name'),
-      login: this.user.get('login'),
-      password: this.user.get('password')
-    }
-    const newUser = this.userService.register(_user);
-    console.log(newUser);
+  public onUserRegister() {
+    this.userService.register(this.user);
+  }
+
+  public onClearForm() {
+
   }
 
 }
