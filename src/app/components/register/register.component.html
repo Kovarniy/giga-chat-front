@@ -1,0 +1,21 @@
+<form [formGroup]="user" (ngSubmit)="register()" novalidate>
+
+  <div>
+    <label>Имя</label>
+    <input type="text" formControlName="name" />
+  </div>
+
+  <div>
+    <label>Логин</label>
+    <input type="text" formControlName="login" />
+  </div>
+
+  <div>
+    <label>Пароль</label>
+    <input type="text" formControlName="password" />
+  </div>
+
+  <button type="submit">Зарегистрироваться</button>
+
+</form>
+
