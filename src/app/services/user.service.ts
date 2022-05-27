@@ -13,11 +13,9 @@ export class UserService {
               private environmentService: EnvironmentService) {
   }
 
-  public register(user: User): any {
+  public register(user: User): Observable<User> {
     const domain = this.environmentService.getValue('domain');
-    return this.httpClient.post<User>(domain + 'api/register', user).subscribe(result => {
-      result;
-    });
+    return this.httpClient.post<User>(domain + 'api/register', user);
   }
 
 }

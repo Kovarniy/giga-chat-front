@@ -12,6 +12,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { RouterModule, Routes } from "@angular/router";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -32,7 +34,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [{ provide: ENVIRONMENT, useValue: environment }],
   bootstrap: [AppComponent]
