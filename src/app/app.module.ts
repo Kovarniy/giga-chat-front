@@ -3,20 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './app.component';
-import { RegisterComponent } from './components/register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {environment} from "../environments/environment";
 import {ENVIRONMENT} from "./services/environment.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { RouterModule, Routes } from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 
+import { LoginFormComponent } from './components/authorization/login-form/login-form.component';
+import { AppComponent } from './app.component';
+import {RegisterFormComponent} from "./components/authorization/register-form/register-form.component";
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
 const appRoutes: Routes = [
-  { path: 'register', component: RegisterComponent },
+  { path: 'auth', component: LoginFormComponent },
+  { path: 'register', component: RegisterFormComponent },
   { path: '**', component: PageNotFoundComponent }
   // { path: 'chats', component:}
 ]
@@ -24,8 +27,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    PageNotFoundComponent
+    RegisterFormComponent,
+    PageNotFoundComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

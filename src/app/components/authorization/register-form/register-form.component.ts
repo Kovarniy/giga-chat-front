@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../models/user";
-import {UserService} from "../../services/user.service";
+import {User} from "../../../models/user";
+import {UserService} from "../../../services/user.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterFormComponent implements OnInit {
 
   user: User;
 

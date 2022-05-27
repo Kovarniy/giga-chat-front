@@ -18,4 +18,9 @@ export class UserService {
     return this.httpClient.post<User>(domain + 'api/register', user);
   }
 
+  public login(user: User): Observable<User> {
+    const domain = this.environmentService.getValue('domain');
+    return this.httpClient.post<User>(domain + 'api/login', user);
+  }
+
 }

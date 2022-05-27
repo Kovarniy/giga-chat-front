@@ -5,3 +5,16 @@
 .ng-invalid:not(form)  {
   border-left: 5px solid #a94442; /* red */
 }
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.form-buttons button {
+  margin: 5px;
+}
+
+.form-buttons .border {
+  border: 2px solid black;
+}
