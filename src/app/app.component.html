@@ -4,8 +4,8 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" href="#" routerLink="/chats" routerLinkActive="active">Чаты</a>
-        <a class="nav-link" href="#" routerLink="/auth" routerLinkActive="active">Авторизаци</a>
-        <a class="nav-link" href="#" routerLink="/register" routerLinkActive="active">Регистрация</a>
+        <a *ngIf="!isAuth()" class="nav-link" href="#" routerLink="/auth" routerLinkActive="active">Авторизаци</a>
+        <a *ngIf="!isAuth()" class="nav-link" href="#" routerLink="/register" routerLinkActive="active">Регистрация</a>
       </div>
     </div>
   </div>

@@ -16,12 +16,17 @@ import { LoginFormComponent } from './components/authorization/login-form/login-
 import { AppComponent } from './app.component';
 import {RegisterFormComponent} from "./components/authorization/register-form/register-form.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import {TestChatComponent} from "./components/chat/test-chat/test-chat.component";
+import {IsAuthGuard} from "./guards/is-auth-guard.service";
 
 const appRoutes: Routes = [
+  { path: 'chats',
+    component: TestChatComponent,
+    canActivate: [ IsAuthGuard ]
+  },
   { path: 'auth', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
   { path: '**', component: PageNotFoundComponent }
-  // { path: 'chats', component:}
 ]
 
 @NgModule({
