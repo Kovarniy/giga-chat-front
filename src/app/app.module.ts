@@ -9,11 +9,21 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {environment} from "../environments/environment";
 import {ENVIRONMENT} from "./services/environment.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+import { RouterModule, Routes } from "@angular/router";
+
+const appRoutes: Routes = [
+  { path: 'register', component: RegisterComponent },
+  { path: '**', component: PageNotFoundComponent }
+  // { path: 'chats', component:}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [{ provide: ENVIRONMENT, useValue: environment }],
   bootstrap: [AppComponent]

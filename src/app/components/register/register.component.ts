@@ -31,8 +31,4 @@ export class RegisterComponent implements OnInit {
     this.userService.register(this.user);
   }
 
-  public onClearForm() {
-
-  }
-
 }
