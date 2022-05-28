@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {WebsocketService} from "../../../websocket";
+import {WS} from "../../../models/websocket.events";
+import {IMessage} from "../../../models/IMessage";
 
 @Component({
   selector: 'app-test-chat',
@@ -7,7 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestChatComponent implements OnInit {
 
-  constructor() { }
+  constructor(private wsService: WebsocketService) {
+    this.wsService.on<IMessage[]>(WS.ON.MESSAGES)
+      .subscribe((messages: IMessage[]) => {
+        console.log(messages);
+
+        this.wsService.send('message', 'Test Text!');
+      });
+  }
 
   ngOnInit(): void {
   }
