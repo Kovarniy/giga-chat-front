@@ -16,7 +16,7 @@ import { LoginFormComponent } from './components/authorization/login-form/login-
 import { AppComponent } from './app.component';
 import {RegisterFormComponent} from "./components/authorization/register-form/register-form.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import {ChatFormComponent} from "./components/chat-application/chat-form/chat-field.component";
+import {ChatFormComponent} from "./components/chat-application/chat-form/chat-form.component";
 import {IsAuthGuard} from "./guards/is-auth-guard.service";
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChatMessageComponent } from './components/chat-application/chat-form/chat-message/chat-message.component';
@@ -50,7 +50,6 @@ const appRoutes: Routes = [
     LoginFormComponent,
     ChatFormComponent,
     ChatMessageComponent,
-    ChatFormComponent,
     ProfileComponent,
     ChatBarComponent,
     AvatarComponent,
