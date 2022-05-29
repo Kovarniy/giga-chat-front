@@ -17,7 +17,7 @@ export class StompService {
   constructor() {
   }
 
-  public subsctibe(chatId: string, callback: any) {
+  public subscribe(chatId: string, callback: any) {
     const isConnected = this.stompClient.connected;
 
     if (isConnected) {
