@@ -36,7 +36,10 @@ const appRoutes: Routes = [
     component: AuthorizationComponent,
     canActivate: [ IsNotAuthGuard ]
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**',
+    component: PageNotFoundComponent,
+    canActivate: [IsAuthGuard]
+  }
 ]
 
 @NgModule({
