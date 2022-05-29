@@ -11,8 +11,13 @@
 
   .channel-list {
     width: 100px;
-    display: flex;
     background-color: #C9C9C9;
+
+    .chat-item {
+      display: flex;
+      justify-content: center;
+    }
+
   }
 
   .chat-list {
