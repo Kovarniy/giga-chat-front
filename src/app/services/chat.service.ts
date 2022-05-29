@@ -14,6 +14,8 @@ import {User} from "../models/user";
 })
 export class ChatService extends AbstractService {
 
+  chatUrl = this.domain + ApiUrls.chatUrl;
+
   constructor(protected override httpClient: HttpClient,
               protected override environmentService: EnvironmentService,
               protected override authService: AuthService) {
@@ -21,34 +23,34 @@ export class ChatService extends AbstractService {
   }
 
   public getUserChats(): Observable<Chat[]> {
-    return this.httpClient.get<Chat[]>(this.domain + ApiUrls.chatUrl, this.requestOptions);
+    return this.httpClient.get<Chat[]>(this.chatUrl, this.requestOptions);
   }
 
   public getUserPrivateChats(): Observable<Chat[]> {
-    return this.httpClient.get<Chat[]>(this.domain + ApiUrls.chatUrl + 'private', this.requestOptions);
+    return this.httpClient.get<Chat[]>(this.chatUrl + 'private', this.requestOptions);
   }
 
   public getChat(id: String): Observable<Chat> {
-    return this.httpClient.get<Chat>(this.domain + ApiUrls.chatUrl + id, this.requestOptions);
+    return this.httpClient.get<Chat>(this.chatUrl + id, this.requestOptions);
   }
 
   public createChat(chat: Chat): Observable<Chat> {
-    return this.httpClient.post<Chat>(this.domain + ApiUrls.chatUrl, chat, this.requestOptions);
+    return this.httpClient.post<Chat>(this.chatUrl, chat, this.requestOptions);
   }
 
   public deleteChat(id: string): Observable<Chat> {
-    return this.httpClient.delete<Chat>(this.domain + ApiUrls.chatUrl + id, this.requestOptions);
+    return this.httpClient.delete<Chat>(this.chatUrl + id, this.requestOptions);
   }
 
   public updateChat(chat: Chat): Observable<Chat> {
-    return this.httpClient.patch<Chat>(this.domain + ApiUrls.chatUrl, chat, this.requestOptions);
+    return this.httpClient.patch<Chat>(this.chatUrl, chat, this.requestOptions);
   }
 
   public getChatMessages(id: string): Observable<Message[]> {
-    return this.httpClient.get<Message[]>(this.domain + ApiUrls.chatUrl + id + "/messages", this.requestOptions);
+    return this.httpClient.get<Message[]>(this.chatUrl + id + "/messages", this.requestOptions);
   }
 
   public getChatUsers(id: string): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.domain + ApiUrls.chatUrl + id + "/users", this.requestOptions);
+    return this.httpClient.get<User[]>(this.chatUrl + id + "/users", this.requestOptions);
   }
 }

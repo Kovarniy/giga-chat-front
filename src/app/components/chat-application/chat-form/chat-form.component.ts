@@ -16,7 +16,7 @@ export class ChatFormComponent implements OnInit {
   text: string;
 
   constructor(private stompService: StompService,
-              private authSerive: AuthService) {
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
