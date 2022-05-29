@@ -16,21 +16,22 @@ import { LoginFormComponent } from './components/authorization/login-form/login-
 import { AppComponent } from './app.component';
 import {RegisterFormComponent} from "./components/authorization/register-form/register-form.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import {ChatFieldComponent} from "./components/chat/test-chat/chat-field.component";
+import {ChatFieldComponent} from "./components/chat-application/chat-form/chat-field.component";
 import {IsAuthGuard} from "./guards/is-auth-guard.service";
 import { ProfileComponent } from './components/profile/profile.component';
-import { ChatMessageComponent } from './components/chat/chat-message/chat-message.component';
-import { ChatBarComponent } from './components/chat/chat-bar/chat-bar.component';
+import { ChatMessageComponent } from './components/chat-application/chat-form/chat-message/chat-message.component';
+import { ChatBarComponent } from './components/chat-application/chat-bar/chat-bar.component';
 import { AvatarComponent } from './components/common/avatar/avatar.component';
 import { ChatTextNamePipe } from './pipes/chat-text-name.pipe';
+import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { ChatApplicationComponent } from './components/chat-application/chat-application.component';
 
 const appRoutes: Routes = [
-  { path: 'chats',
-    component: ChatFieldComponent,
+  { path: 'chat-application',
+    component: ChatApplicationComponent,
     canActivate: [ IsAuthGuard ]
   },
-  { path: 'auth', component: LoginFormComponent },
-  { path: 'register', component: RegisterFormComponent },
+  { path: 'authorization', component: AuthorizationComponent },
   { path: '**', component: PageNotFoundComponent }
 ]
 
@@ -46,7 +47,9 @@ const appRoutes: Routes = [
     ProfileComponent,
     ChatBarComponent,
     AvatarComponent,
-    ChatTextNamePipe
+    ChatTextNamePipe,
+    AuthorizationComponent,
+    ChatApplicationComponent
   ],
   imports: [
     BrowserModule,
