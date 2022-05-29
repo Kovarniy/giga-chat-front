@@ -16,11 +16,11 @@ export class ChatFieldComponent implements OnInit {
   text: string;
 
   constructor(private stompService: StompService,
-              private authSerive: AuthService) {
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.stompService.subsctibe( 'id_Test_Private_Chat1', (message) => {
+    this.stompService.subscribe( 'id_Test_Private_Chat1', (message) => {
       const _message: Message = JSON.parse(message.body);
       this.messages.push(_message);
     });
