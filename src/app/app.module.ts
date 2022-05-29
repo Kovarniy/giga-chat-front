@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     WebsocketModule.config({
-      url: environment.domain
+      url: environment.ws
     })
   ],
   providers: [{ provide: ENVIRONMENT, useValue: environment }],

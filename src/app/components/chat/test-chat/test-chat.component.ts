@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {WebsocketService} from "../../../websocket";
 import {WS} from "../../../models/websocket.events";
 import {IMessage} from "../../../models/IMessage";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-test-chat',
@@ -10,16 +11,29 @@ import {IMessage} from "../../../models/IMessage";
 })
 export class TestChatComponent implements OnInit {
 
-  constructor(private wsService: WebsocketService) {
-    this.wsService.on<IMessage[]>(WS.ON.MESSAGES)
-      .subscribe((messages: IMessage[]) => {
-        console.log(messages);
+  text: string;
 
-        this.wsService.send('message', 'Test Text!');
-      });
+  private messages$: Observable<IMessage[]>;
+
+  constructor(private wsService: WebsocketService) {
   }
 
   ngOnInit(): void {
+    this.messages$ = this.wsService.on<IMessage[]>(WS.ON.MESSAGES);
+  }
+
+  submit() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const data = {
+      sender: !user ? user : null,
+      text: this.text,
+      isRead: false,
+      chat: {
+        id: 'id_Test_Private_Chat1'
+      }
+    };
+    this.wsService.send('message', data);
+
   }
 
 }

@@ -12,7 +12,7 @@
 
     <div class="form-group">
       <label for="password">Пароль</label>
-      <input #password='ngModel' type="text" class="form-control" [(ngModel)]="user.password" name="password"
+      <input #password='ngModel' type="password" class="form-control" [(ngModel)]="user.password" name="password"
              id="password" required/>
       <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
         Поле "Пароль" обязательно для заполнения
