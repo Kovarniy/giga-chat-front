@@ -18,7 +18,7 @@ import {RegisterFormComponent} from "./components/authorization/register-form/re
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import {TestChatComponent} from "./components/chat/test-chat/test-chat.component";
 import {IsAuthGuard} from "./guards/is-auth-guard.service";
-// import { WebsocketModule } from './websocket';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   { path: 'chats',
@@ -36,7 +36,8 @@ const appRoutes: Routes = [
     RegisterFormComponent,
     PageNotFoundComponent,
     LoginFormComponent,
-    TestChatComponent
+    TestChatComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +49,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    // WebsocketModule.config({
-    //   url: environment.ws
-    // })
   ],
   providers: [{ provide: ENVIRONMENT, useValue: environment }],
   bootstrap: [AppComponent]
