@@ -16,14 +16,17 @@ import { LoginFormComponent } from './components/authorization/login-form/login-
 import { AppComponent } from './app.component';
 import {RegisterFormComponent} from "./components/authorization/register-form/register-form.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import {TestChatComponent} from "./components/chat/test-chat/test-chat.component";
+import {ChatFieldComponent} from "./components/chat/test-chat/chat-field.component";
 import {IsAuthGuard} from "./guards/is-auth-guard.service";
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChatMessageComponent } from './components/chat/chat-message/chat-message.component';
+import { ChatBarComponent } from './components/chat/chat-bar/chat-bar.component';
+import { AvatarComponent } from './components/common/avatar/avatar.component';
+import { ChatTextNamePipe } from './pipes/chat-text-name.pipe';
 
 const appRoutes: Routes = [
   { path: 'chats',
-    component: TestChatComponent,
+    component: ChatFieldComponent,
     canActivate: [ IsAuthGuard ]
   },
   { path: 'auth', component: LoginFormComponent },
@@ -37,10 +40,13 @@ const appRoutes: Routes = [
     RegisterFormComponent,
     PageNotFoundComponent,
     LoginFormComponent,
-    TestChatComponent,
+    ChatFieldComponent,
     ChatMessageComponent,
-    TestChatComponent,
-    ProfileComponent
+    ChatFieldComponent,
+    ProfileComponent,
+    ChatBarComponent,
+    AvatarComponent,
+    ChatTextNamePipe
   ],
   imports: [
     BrowserModule,

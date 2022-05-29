@@ -1,0 +1,10 @@
+<div class="circle">
+
+  <a [href]="chatUrl" href="#">
+    <img *ngIf="!!image ; else textImg" src="#" alt="#">
+    <ng-template #textImg>
+      {{ chatName | chatTextName }}
+    </ng-template>
+  </a>
+
+</div>
