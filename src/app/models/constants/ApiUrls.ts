@@ -7,6 +7,4 @@ export class ApiUrls {
   static chatUrl: string = 'api/chats/';
   static channelUrl: string = 'api/channels/';
 
-
-
 }
