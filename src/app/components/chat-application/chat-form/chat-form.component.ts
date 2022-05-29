@@ -6,11 +6,11 @@ import {StompService} from "../../../services/stomp.service";
 import {Message} from "../../../models/Message";
 
 @Component({
-  selector: 'app-chat-field',
-  templateUrl: './chat-field.component.html',
-  styleUrls: ['./chat-field.component.scss']
+  selector: 'app-chat-form',
+  templateUrl: './chat-form.component.html',
+  styleUrls: ['./chat-form.component.scss']
 })
-export class ChatFieldComponent implements OnInit {
+export class ChatFormComponent implements OnInit {
 
   messages: Message[] = [];
   text: string;
