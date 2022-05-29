@@ -1,5 +1,5 @@
-export interface Avatar {
-  creationTime: string | Date;
-  id:	string;
+import {AbstractEntity} from "./AbstractEntity";
+
+export interface Avatar extends AbstractEntity{
   path: string
 }
