@@ -25,6 +25,7 @@ import { AvatarComponent } from './components/common/avatar/avatar.component';
 import { ChatTextNamePipe } from './pipes/chat-text-name.pipe';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
 import { ChatApplicationComponent } from './components/chat-application/chat-application.component';
+import {IsNotAuthGuard} from "./guards/is-not-auth.guard";
 
 const appRoutes: Routes = [
   { path: 'chat-application',
@@ -33,7 +34,7 @@ const appRoutes: Routes = [
   },
   { path: 'authorization',
     component: AuthorizationComponent,
-    canActivate: [ !IsAuthGuard ]
+    canActivate: [ IsNotAuthGuard ]
   },
   { path: '**', component: PageNotFoundComponent }
 ]

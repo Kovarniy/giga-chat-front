@@ -6,7 +6,7 @@ import {AuthService} from "../services/auth.service";
 @Injectable({
   providedIn: 'root'
 })
-export class IsAuthGuard implements CanActivate {
+export class IsNotAuthGuard implements CanActivate {
 
   constructor(private authService: AuthService) {
   }
@@ -15,8 +15,8 @@ export class IsAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const isAuth = this.authService.isAuth();
-    return isAuth;
+    const isNotAuth = !this.authService.isAuth();
+    return isNotAuth;
   }
 
 }
