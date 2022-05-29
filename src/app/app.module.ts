@@ -38,7 +38,7 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     LoginFormComponent,
     TestChatComponent,
-    ChatMessageComponent
+    ChatMessageComponent,
     TestChatComponent,
     ProfileComponent
   ],

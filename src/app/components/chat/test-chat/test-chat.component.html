@@ -1,7 +1,7 @@
 <!--<input type="text" [(ngModel)]="text">-->
 <button (click)="send()">Го</button>
 
-<div class="container" style="display: flex">
+<div class="container message-line">
   <div *ngFor="let message of messages">
       <app-chat-message [message]="message">
 
