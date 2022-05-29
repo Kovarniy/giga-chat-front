@@ -36,9 +36,8 @@ export class ChatService extends AbstractService {
     return this.httpClient.post<Chat>(this.domain + ApiUrls.chatUrl, chat, this.requestOptions);
   }
 
-  public deleteChat(chat: Chat): Observable<Chat> {
-    return this.httpClient.delete<Chat>(this.domain + ApiUrls.chatUrl,
-      {headers: this.requestOptions.headers, body: chat});
+  public deleteChat(id: string): Observable<Chat> {
+    return this.httpClient.delete<Chat>(this.domain + ApiUrls.chatUrl + id, this.requestOptions);
   }
 
   public updateChat(chat: Chat): Observable<Chat> {
