@@ -1,13 +1,12 @@
 import {Avatar} from "./avatar";
+import {AbstractEntity} from "./AbstractEntity";
 
-export interface User {
+export interface User extends AbstractEntity {
   about?: string;
   avatar?: Avatar;
-  creationTime?: string | Date;
-  id?: string;
   isPublic?:	boolean;
-  login: string;
-  name:	string;
+  login?: string;
+  name?:	string;
   token?: string;
-  password: string;
+  password?: string;
 }

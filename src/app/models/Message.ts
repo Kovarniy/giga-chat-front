@@ -1,10 +1,9 @@
 import {Chat} from "./Chat";
 import {User} from "./user";
+import {AbstractEntity} from "./AbstractEntity";
 
-export interface Message {
+export interface Message extends AbstractEntity {
   chat?:	Chat;
-  creationTime?:	string | Date;
-  id?:	string;
   isRead?:	boolean;
   sender?:	User;
   text?:	string;
