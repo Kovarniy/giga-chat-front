@@ -8,4 +8,5 @@ export interface Message {
   isRead?:	boolean;
   sender?:	User;
   text?:	string;
+  isCuttentUserMessage?: boolean; // only front (not fans)
 }

@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import {TestChatComponent} from "./components/chat/test-chat/test-chat.component";
 import {IsAuthGuard} from "./guards/is-auth-guard.service";
 import { ProfileComponent } from './components/profile/profile.component';
+import { ChatMessageComponent } from './components/chat/chat-message/chat-message.component';
 
 const appRoutes: Routes = [
   { path: 'chats',
@@ -36,6 +37,8 @@ const appRoutes: Routes = [
     RegisterFormComponent,
     PageNotFoundComponent,
     LoginFormComponent,
+    TestChatComponent,
+    ChatMessageComponent
     TestChatComponent,
     ProfileComponent
   ],

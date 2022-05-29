@@ -1,0 +1,12 @@
+<div class="message"
+     [ngClass]="{'right': message.isCuttentUserMessage,
+                 'left': !message.isCuttentUserMessage}"
+>
+  <div class="title">
+    <div class="title-name">{{message?.sender?.name}}</div>
+    <div class="title-date">{{message?.creationTime | date :'dd.MM.yy hh:mm'}}</div>
+  </div>
+  <div class="body">
+    {{message?.text}}
+  </div>
+</div>

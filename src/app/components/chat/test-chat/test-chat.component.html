@@ -1,5 +1,11 @@
-<p>test-chat works!</p>
-
-
 <!--<input type="text" [(ngModel)]="text">-->
 <button (click)="send()">Го</button>
+
+<div class="container" style="display: flex">
+  <div *ngFor="let message of messages">
+      <app-chat-message [message]="message">
+
+      </app-chat-message>
+  </div>
+</div>
+

@@ -40,8 +40,8 @@ export class StompService {
   }
 
   private subscribeToChat(chatId: string, callback: any) {
-    this.stompClient.subscribe(this.topicUrl + chatId, (): any => {
-      callback();
+    this.stompClient.subscribe(this.topicUrl + chatId, (message): any => {
+      callback(message);
     })
   }
 

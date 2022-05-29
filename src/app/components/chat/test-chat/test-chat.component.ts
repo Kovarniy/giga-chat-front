@@ -12,12 +12,16 @@ import {Message} from "../../../models/Message";
 })
 export class TestChatComponent implements OnInit {
 
-  constructor(private stompService: StompService) {
+  messages: Message[] = [];
+
+  constructor(private stompService: StompService,
+              private authSerive: AuthService) {
   }
 
   ngOnInit(): void {
-    this.stompService.subsctibe( 'id_Test_Private_Chat1', () => {
-      console.log('message')
+    this.stompService.subsctibe( 'id_Test_Private_Chat1', (message) => {
+      const _message: Message = JSON.parse(message.body);
+      this.messages.push(_message);
     });
   }
 
