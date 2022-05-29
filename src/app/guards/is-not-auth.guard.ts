@@ -17,7 +17,6 @@ export class IsNotAuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     const isNotAuth = !this.authService.isAuth();
-    console.log(route.url);
 
     if (!isNotAuth && route.url.length === 1 && route.url[0].path === 'authorization') {
       this.router.navigate(['/chat-application']);
