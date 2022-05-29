@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {ToastrService} from "ngx-toastr";
 import {User} from "../../../models/user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
@@ -13,7 +14,8 @@ export class LoginFormComponent implements OnInit {
   user: User;
 
   constructor(private userService: UserService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this._createUserForm();
@@ -39,6 +41,7 @@ export class LoginFormComponent implements OnInit {
 
           this.toastr.success('Успех!', `
           Пользователь с именем ${user.login} успешно авторизован!`);
+          this.router.navigate(['/chat-application']);
         },
         error: (error) => {
           this.toastr.error('Неудача!', `
