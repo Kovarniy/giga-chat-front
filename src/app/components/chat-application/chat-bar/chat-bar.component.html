@@ -12,7 +12,8 @@
 
   <div class="chat-list">
     <app-private-chats *ngIf="chatState === chatTypes.private"
-                       [allChats]="privateChats">
+                       [allChats]="privateChats"
+                       (chatOpen)="onChatOpen($event)">
     </app-private-chats>
   </div>
 

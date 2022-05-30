@@ -11,10 +11,19 @@ import {ChatTypes} from "../../models/constants/ChatTypes";
 export class ChatApplicationComponent implements OnInit {
 
   privateChats: Chat[];
-
   allChats: Chat[];
-
   channelChats: Chat[];
+
+  /**
+   * хранит состояние 'какой чат открыт'.
+   */
+  currentChatState: any;
+
+  /**
+   * хранит состояние 'какой канал открыт'.
+   */
+  currentChannelState: any;
+
 
   constructor(private chatService: ChatService) {
   }
@@ -35,4 +44,7 @@ export class ChatApplicationComponent implements OnInit {
   }
 
 
+  onChatOpen(event: any) {
+    console.log('Текущий чат ' + event)
+  }
 }

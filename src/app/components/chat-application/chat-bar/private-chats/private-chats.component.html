@@ -1,7 +1,8 @@
 <hr>
 
 <div *ngFor="let chat of allChats">
-  <app-chat-field [setChats]="chat">
+  <app-chat-field [setChats]="chat"
+                  (chatOpen)="onChatOpen($event)">
 
   </app-chat-field>
 </div>

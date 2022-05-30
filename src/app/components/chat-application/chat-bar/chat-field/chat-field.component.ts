@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Chat} from "../../../../models/Chat";
 
 @Component({
@@ -14,9 +14,15 @@ export class ChatFieldComponent implements OnInit {
     this.chat.name = this.chat.name ? this.chat.name : this.chat.id;
   }
 
+  @Output() chatOpen: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onOpenChat() {
+    this.chatOpen.emit(this.chat.id);
   }
 
 }

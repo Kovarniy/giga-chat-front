@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Chat} from "../../../models/Chat";
 import {ChatTypes} from "../../../models/constants/ChatTypes";
 
@@ -11,6 +11,8 @@ export class ChatBarComponent implements OnInit {
 
   @Input() allChats: Chat[];
   @Input() privateChats: Chat[];
+
+  @Output() chatOpen: EventEmitter<any> = new EventEmitter();
 
   chatTypes = {
     public: 'PUBLIC',
@@ -35,5 +37,9 @@ export class ChatBarComponent implements OnInit {
 
   onPublicChatClick() {
     this.chatState = ChatTypes.publicType;
+  }
+
+  onChatOpen(event: any) {
+    this.chatOpen.emit(event);
   }
 }

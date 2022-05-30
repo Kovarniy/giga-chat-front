@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Chat} from "../../../../models/Chat";
 
 @Component({
@@ -9,10 +9,15 @@ import {Chat} from "../../../../models/Chat";
 export class PrivateChatsComponent implements OnInit {
 
   @Input() allChats: Chat[];
+  @Output() chatOpen: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onChatOpen(event: any) {
+    console.log(event);
+    this.chatOpen.emit(event);
+  }
 }
