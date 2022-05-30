@@ -1,22 +1,25 @@
-<div class="container">
+<div class="body">
+  <div class="container d-flex align-items-center">
 
-  <div class="main-form">
-    <div class="tabs">
-      <button (click)="changeToLogin()" [disabled]="isLoginTab" >Вход</button>
-      <button (click)="changeToRegistration()" [disabled]="!isLoginTab">Регистрация</button>
-    </div>
-
-    <div class="form-body">
-      <div *ngIf="isLoginTab ; else registerTab">
-        <app-login-form></app-login-form>
+    <div class="main-form d-flex flex-column">
+      <div class="tabs">
+        <button (click)="changeToLogin()" [disabled]="isLoginTab">Вход</button>
+        <button (click)="changeToRegistration()" [disabled]="!isLoginTab">Регистрация</button>
       </div>
 
-      <ng-template #registerTab>
-        <app-register-form></app-register-form>
-      </ng-template>
+      <div class="form-body">
+        <ng-container *ngIf="isLoginTab ; else registerTab">
+          <app-login-form></app-login-form>
+        </ng-container>
+
+        <ng-template #registerTab>
+          <app-register-form></app-register-form>
+        </ng-template>
+
+      </div>
 
     </div>
 
   </div>
-
 </div>
+
