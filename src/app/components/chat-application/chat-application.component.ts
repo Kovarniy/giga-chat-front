@@ -24,7 +24,6 @@ export class ChatApplicationComponent implements OnInit {
    */
   currentChannelState: any;
 
-
   constructor(private chatService: ChatService) {
   }
 
@@ -44,7 +43,8 @@ export class ChatApplicationComponent implements OnInit {
   }
 
 
-  onChatOpen(event: any) {
-    console.log('Текущий чат ' + event)
+  onChatOpen(chatId: any) {
+    console.log('Текущий чат ' + chatId)
+    this.currentChatState = chatId;
   }
 }

@@ -37,7 +37,7 @@ export class ChatFormComponent implements OnInit {
   }
 
   subscribeOnChat() {
-    this.stompService.subscribe( this.currentChatState || 'id_Test_Private_Chat1', (message) => {
+    this.stompService.subscribe( this.currentChatState, (message) => {
       const _message: Message = JSON.parse(message.body);
       this.messages.push(_message);
     });
@@ -62,7 +62,7 @@ export class ChatFormComponent implements OnInit {
       text: this.message.trim(),
       isRead: false,
       chat: {
-        id: 'id_Test_Private_Chat1'
+        id: this.currentChatState
       }
     };
     this.stompService.send(data);
