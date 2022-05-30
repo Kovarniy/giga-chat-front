@@ -1,4 +1,5 @@
-<div class="circle">
+<div class="circle" [ngClass]="{'standard': this.avatarSizeState == this.avatarSizeStateStates.standard,
+                                'small': this.avatarSizeState == this.avatarSizeStateStates.small}">
 
   <a [href]="chatUrl" href="#">
     <img *ngIf="!!image ; else textImg" src="#" alt="#">

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ChatService} from "../../services/chat.service";
 import {Chat} from "../../models/Chat";
+import {ChatTypes} from "../../models/constants/ChatTypes";
 
 @Component({
   selector: 'app-chat-application',
@@ -9,7 +10,11 @@ import {Chat} from "../../models/Chat";
 })
 export class ChatApplicationComponent implements OnInit {
 
-  userChats: Chat[];
+  privateChats: Chat[];
+
+  allChats: Chat[];
+
+  channelChats: Chat[];
 
   constructor(private chatService: ChatService) {
   }
@@ -17,8 +22,11 @@ export class ChatApplicationComponent implements OnInit {
   ngOnInit(): void {
     this.chatService.getUserChats()
       .subscribe({
-        next: (userChats: Chat[]) => {
-          this.userChats = userChats;
+        next: (allChats: Chat[]) => {
+          this.allChats = allChats;
+
+          this.privateChats = allChats.filter(chat => chat.chatType === ChatTypes.privateType);
+          console.log(this.privateChats)
         },
         error: (err => {
           console.log(err);

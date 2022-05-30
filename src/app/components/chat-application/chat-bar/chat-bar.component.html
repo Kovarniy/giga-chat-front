@@ -1,14 +1,19 @@
 <div class="sidenav">
   <div class="channel-list">
-    <app-avatar class="chat-item" [chatName]="'чат 1'">
+    <app-avatar class="chat-item" [chatName]="'Приватные чаты'"
+                (click)="onPrivateChatClick()">
     </app-avatar>
-    <a href="#">About</a>
+    <hr>
+    <a href="#" (click)="onPublicChatClick()">About</a>
     <a href="#">Services</a>
     <a href="#">Clients</a>
     <a href="#">Contact</a>
   </div>
-  <div class="chat-list">
 
+  <div class="chat-list">
+    <app-private-chats *ngIf="chatState === chatTypes.private"
+                       [allChats]="privateChats">
+    </app-private-chats>
   </div>
 
 </div>

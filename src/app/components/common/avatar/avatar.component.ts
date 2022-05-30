@@ -11,6 +11,13 @@ export class AvatarComponent implements OnInit {
   @Input() chatName: string;
   @Input() chatUrl: string;
 
+  @Input() avatarSizeState: 'small' | 'standard' = 'standard';
+
+  avatarSizeStateStates = {
+    small: 'small',
+    standard: 'standard'
+  }
+
   constructor() { }
 
   ngOnInit(): void {

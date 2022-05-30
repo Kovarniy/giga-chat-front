@@ -27,6 +27,10 @@ export class ChatFormComponent implements OnInit {
   }
 
   send() {
+    if (!this.message.trim()) {
+      return;
+    }
+
     const user = JSON.parse(localStorage.getItem("user"));
     const data: Message = {
       sender: user ? user : null,

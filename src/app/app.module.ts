@@ -26,6 +26,8 @@ import { ChatTextNamePipe } from './pipes/chat-text-name.pipe';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
 import { ChatApplicationComponent } from './components/chat-application/chat-application.component';
 import {IsNotAuthGuard} from "./guards/is-not-auth.guard";
+import { PrivateChatsComponent } from './components/chat-application/chat-bar/private-chats/private-chats.component';
+import { ChatFieldComponent } from './components/chat-application/chat-bar/chat-field/chat-field.component';
 
 const appRoutes: Routes = [
   { path: 'chat-application',
@@ -55,7 +57,9 @@ const appRoutes: Routes = [
     AvatarComponent,
     ChatTextNamePipe,
     AuthorizationComponent,
-    ChatApplicationComponent
+    ChatApplicationComponent,
+    PrivateChatsComponent,
+    ChatFieldComponent
   ],
   imports: [
     BrowserModule,
