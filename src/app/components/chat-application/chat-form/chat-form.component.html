@@ -1,12 +1,22 @@
-<div class="container message-line">
-  <div *ngFor="let message of messages">
+<div class="chat d-flex flex-column">
+
+  <div class="chat-info d-flex align-items-center">
+    <div class="avatar"><img src="assets/img/gigachad.jpg" alt=""></div>
+    <span class="chat-name">Kamronbek</span>
+  </div>
+
+  <div class="message-line">
+    <div *ngFor="let message of messages">
       <app-chat-message [message]="message">
 
       </app-chat-message>
+    </div>
+  </div>
+
+  <div class="message-input d-flex flex-row">
+  <textarea [(ngModel)]="message"
+            placeholder="Введите сообщение...">
+  </textarea>
+    <button (click)="send()"><img src="assets/img/send-button.png" alt="send"></button>
   </div>
 </div>
-
-<textarea [(ngModel)]="message"
-          placeholder="Введите сообщение...">
-</textarea>
-<button (click)="send()">Го</button>
