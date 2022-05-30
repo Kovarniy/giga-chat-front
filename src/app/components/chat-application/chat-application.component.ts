@@ -28,12 +28,10 @@ export class ChatApplicationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.chatService.getUserChats()
+    this.chatService.getUserPrivateChats()
       .subscribe({
-        next: (allChats: Chat[]) => {
-          this.allChats = allChats;
-
-          this.privateChats = allChats.filter(chat => chat.chatType === ChatTypes.privateType);
+        next: (privateChats: Chat[]) => {
+          this.privateChats = privateChats;
           console.log(this.privateChats)
         },
         error: (err => {

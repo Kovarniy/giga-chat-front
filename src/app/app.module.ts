@@ -38,6 +38,10 @@ const appRoutes: Routes = [
     component: AuthorizationComponent,
     canActivate: [ IsNotAuthGuard ]
   },
+  { path: '',
+    component: ChatApplicationComponent,
+    canActivate: [IsAuthGuard]
+  },
   { path: '**',
     component: PageNotFoundComponent,
     canActivate: [IsAuthGuard]

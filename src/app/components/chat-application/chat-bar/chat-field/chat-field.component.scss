@@ -1,16 +1,15 @@
 .chat-field {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 10px 0px;
+  height: 60px;
+  cursor: pointer;
+
+  app-avatar {
+    margin-left: 10px;
+  }
 
   .chat-name {
-    //font-family: 'Arial';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    margin-left: 20px;
+    margin-left: 10px;
   }
 
 }
