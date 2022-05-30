@@ -39,7 +39,7 @@ export class ChatBarComponent implements OnInit {
     this.chatState = ChatTypes.publicType;
   }
 
-  onChatOpen(event: any) {
+  onChatOpen(event: Chat) {
     this.chatOpen.emit(event);
   }
 }

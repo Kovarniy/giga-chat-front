@@ -15,9 +15,9 @@ export class ChatApplicationComponent implements OnInit {
   channelChats: Chat[];
 
   /**
-   * хранит состояние 'какой чат открыт'.
+   * Текущий чат
    */
-  currentChatState: any;
+  currentChat: any;
 
   /**
    * хранит состояние 'какой канал открыт'.
@@ -43,8 +43,11 @@ export class ChatApplicationComponent implements OnInit {
   }
 
 
-  onChatOpen(chatId: any) {
-    console.log('Текущий чат ' + chatId)
-    this.currentChatState = chatId;
+  /**
+   * @param chat id выбранного чата
+   */
+  onChatOpen(chat: Chat) {
+    console.log('Текущий чат ' + chat.id)
+    this.currentChat = chat;
   }
 }

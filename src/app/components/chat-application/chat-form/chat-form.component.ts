@@ -5,6 +5,7 @@ import {AuthService} from "../../../services/auth.service";
 import {StompService} from "../../../services/stomp.service";
 import {Message} from "../../../models/Message";
 import {ChatService} from "../../../services/chat.service";
+import {Chat} from "../../../models/Chat";
 
 @Component({
   selector: 'app-chat-form',
@@ -13,13 +14,14 @@ import {ChatService} from "../../../services/chat.service";
 })
 export class ChatFormComponent implements OnInit {
 
-  currentChatState: any = 'id_Test_Private_Chat1';
+  // TODO придумать инциализацию стартового чата
+  currentChat;
 
-  @Input() set changeChatState(currentChat: string) {
+  @Input() set changeChatState(currentChat: Chat) {
     if (!currentChat) {
       return;
     }
-    this.currentChatState = currentChat;
+    this.currentChat = currentChat;
     this.subscribeOnChat();
     this.loadMessages();
   }
@@ -37,14 +39,14 @@ export class ChatFormComponent implements OnInit {
   }
 
   subscribeOnChat() {
-    this.stompService.subscribe( this.currentChatState, (message) => {
+    this.stompService.subscribe( this.currentChat.id, (message) => {
       const _message: Message = JSON.parse(message.body);
       this.messages.push(_message);
     });
   }
 
   loadMessages() {
-    this.chatService.getChatMessages(this.currentChatState)
+    this.chatService.getChatMessages(this.currentChat.id)
       .subscribe((messages) => {
         //TODO возможно тут можно добавить какое-то кэширование сообщений
         this.messages = messages;
@@ -62,7 +64,7 @@ export class ChatFormComponent implements OnInit {
       text: this.message.trim(),
       isRead: false,
       chat: {
-        id: this.currentChatState
+        id: this.currentChat.id
       }
     };
     this.stompService.send(data);

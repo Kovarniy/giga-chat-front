@@ -16,7 +16,7 @@ export class PrivateChatsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChatOpen(event: any) {
+  onChatOpen(event: Chat) {
     console.log(event);
     this.chatOpen.emit(event);
   }

@@ -22,7 +22,7 @@ export class ChatFieldComponent implements OnInit {
   }
 
   onOpenChat() {
-    this.chatOpen.emit(this.chat.id);
+    this.chatOpen.emit(this.chat);
   }
 
 }
