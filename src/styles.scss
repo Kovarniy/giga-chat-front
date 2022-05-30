@@ -18,3 +18,7 @@
 //@import '~bootstrap/scss/variables';
 //@import '~bootstrap/scss/mixins';
 //@import '~ngx-toastr/toastr-bs4-alert';
+html, body {
+  margin: 0px;
+  height: 100%;
+}
