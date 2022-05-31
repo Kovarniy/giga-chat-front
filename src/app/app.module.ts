@@ -41,6 +41,16 @@ const appRoutes: Routes = [
     canActivate: [IsNotAuthGuard]
   },
   {
+    path: 'api',
+    children: [{
+      path: '**',
+      component: ChatApplicationComponent
+    }],
+    component: ChatApplicationComponent,
+    canActivate: [IsAuthGuard],
+    pathMatch: 'prefix'
+  },
+  {
     path: '',
     component: ChatApplicationComponent,
     canActivate: [IsAuthGuard]

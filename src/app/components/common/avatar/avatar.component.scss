@@ -1,12 +1,13 @@
 .circle {
   border-radius: 50%;
   background-color: white;
+  cursor: pointer;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  a {
+  div {
     color: black;
     font-weight: bold;
     font-size: 26px;

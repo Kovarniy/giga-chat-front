@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Chat} from "../../../models/Chat";
 import {ChatTypes} from "../../../models/constants/ChatTypes";
+import {Channel} from "../../../models/Channel";
+import {ApiUrls} from "../../../models/constants/ApiUrls";
 
 @Component({
   selector: 'app-chat-bar',
@@ -8,10 +10,12 @@ import {ChatTypes} from "../../../models/constants/ChatTypes";
   styleUrls: ['./chat-bar.component.scss']
 })
 export class ChatBarComponent implements OnInit {
-  
-  @Input() chats: Chat[];
 
-  @Output() chatOpen: EventEmitter<any> = new EventEmitter();
+  @Input() chats: Chat[];
+  @Input() channels: Channel[];
+
+  @Output() chatOpenEvent: EventEmitter<Chat> = new EventEmitter();
+  @Output() channelOpenEvent: EventEmitter<Channel> = new EventEmitter();
 
   chatTypes = {
     public: 'PUBLIC',
@@ -31,15 +35,23 @@ export class ChatBarComponent implements OnInit {
   }
 
   onPrivateChatClick() {
-    this.chatState = ChatTypes.privateType;
     console.log('private chats');
+    this.channelOpenEvent.emit(null);
   }
 
-  onPublicChatClick() {
-    this.chatState = ChatTypes.publicType;
+  onChannelClick(channel: Channel) {
+    this.channelOpenEvent.emit(channel);
   }
 
-  onChatOpen(event: Chat) {
-    this.chatOpen.emit(event);
+  onChatOpenEvent(event: Chat) {
+    this.chatOpenEvent.emit(event);
+  }
+
+  getChannelUrl(link: string) {
+    return ApiUrls.channelUrl + link;
+  }
+
+  getPrivateChatUrl() {
+    return ApiUrls.privateChats;
   }
 }

@@ -1,19 +1,20 @@
 <div class="sidenav">
   <div class="channel-list">
-    <app-avatar class="chat-item" [chatName]="'Приватные чаты'"
+    <app-avatar class="chat-item" [chatName]="'Приватные чаты'" [chatUrl]="getPrivateChatUrl()"
                 (click)="onPrivateChatClick()">
     </app-avatar>
     <hr>
-    <a href="#" (click)="onPublicChatClick()">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+    <div *ngFor="let channel of channels">
+      <app-avatar class="chat-item" [chatName]="channel.name" [chatUrl]="getChannelUrl(channel.link)"
+                  (click)="onChannelClick(channel)">
+      </app-avatar>
+    </div>
   </div>
 
   <div class="chat-list">
-    <app-chat-list *ngIf="chatState === chatTypes.private"
-                       [chats]="chats"
-                       (chatOpen)="onChatOpen($event)">
+    <app-chat-list
+      [chats]="chats"
+      (chatOpen)="onChatOpenEvent($event)">
     </app-chat-list>
   </div>
 
