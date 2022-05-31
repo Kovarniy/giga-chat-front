@@ -19,6 +19,8 @@ export class ChatFormComponent implements OnInit {
       return;
     }
     this.currentChat = currentChat;
+    // TODO Причастом переключении между чатами происходит множественная подписка на чат
+    // из-за чего сообщение может отправиться не один, а множество раз..
     this.subscribeOnChat();
     this.loadMessages();
   }
