@@ -3,7 +3,9 @@
     <app-chat-bar
       [currentUser]="currentUser"
       [channels]="channels"
-      (chatOpenEvent)="onChatOpen($event)">
+      (chatOpenEvent)="onChatOpen($event)"
+      (channelOpenEvent)="onChannelOpen($event)"
+    >
     </app-chat-bar>
   </div>
 

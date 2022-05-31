@@ -20,6 +20,8 @@ export class ChatBarComponent implements OnInit {
   @Output() chatOpenEvent: EventEmitter<Chat> = new EventEmitter();
   @Output() channelOpenEvent: EventEmitter<Channel> = new EventEmitter();
 
+  currentChannel: Channel;
+
   constructor(private chatService: ChatService,
               private channelService: ChannelService,) {
   }
@@ -34,6 +36,7 @@ export class ChatBarComponent implements OnInit {
         next: (privateChats: Chat[]) => {
           this.chats = privateChats;
           this.channelOpenEvent.emit(null);
+          this.currentChannel = null;
         },
         error: (err => {
           console.log(err);
@@ -47,6 +50,7 @@ export class ChatBarComponent implements OnInit {
         next: (channelChats: Chat[]) => {
           this.chats = channelChats;
           this.channelOpenEvent.emit(channel);
+          this.currentChannel = channel;
         },
         error: (err => {
           console.log(err);

@@ -30,7 +30,8 @@ export class AvatarComponent implements OnInit {
   }
 
   redirect() {
-    this.router.navigate([this.chatUrl])
+    if (this.chatUrl)
+      this.router.navigate([this.chatUrl])
   }
 
   getAvatarUrl(imageName: string) {

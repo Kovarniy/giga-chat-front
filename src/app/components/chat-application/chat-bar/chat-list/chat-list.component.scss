@@ -1,3 +1,23 @@
+.channel-info {
+  height: 70px;
+  .avatar {
+    margin: 10px;
+  }
+  span {
+    flex-grow: 1;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+  }
+  .channelName {
+    text-align: left;
+  }
+}
+
+hr {
+  margin: 0;
+}
+
 .chat-list {
 
   .selected {
