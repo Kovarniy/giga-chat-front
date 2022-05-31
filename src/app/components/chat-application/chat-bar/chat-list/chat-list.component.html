@@ -1,8 +1,9 @@
 <hr>
 
-<div *ngFor="let chat of chats">
+<div class="chat-list" *ngFor="let chat of chats">
   <app-chat-field [setChats]="chat"
-                  (chatOpen)="onChatOpen($event)">
+                  (chatOpen)="onChatOpen($event)"
+                  [ngClass]="{selected: currentChat?.id === chat.id}">
 
   </app-chat-field>
 </div>

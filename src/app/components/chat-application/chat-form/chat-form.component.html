@@ -1,6 +1,7 @@
 <div class="chat d-flex flex-column">
   <div class="chat-info d-flex align-items-center">
-    <div class="avatar"><img src="assets/img/gigachad.jpg" alt=""></div>
+    <app-avatar class="avatar" [chatName]="currentChat.name"
+                [image]="currentChat.avatar?.path"> </app-avatar>
     <span class="chat-name">{{ currentChat.name }}</span>
   </div>
 

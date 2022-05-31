@@ -11,12 +11,15 @@ export class ChatListComponent implements OnInit {
   @Input() chats: Chat[];
   @Output() chatOpen: EventEmitter<Chat> = new EventEmitter();
 
+  currentChat: Chat
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onChatOpen(event: Chat) {
-    this.chatOpen.emit(event);
+  onChatOpen(chat: Chat) {
+    this.chatOpen.emit(chat);
+    this.currentChat = chat;
+    console.log(this.currentChat)
   }
 }

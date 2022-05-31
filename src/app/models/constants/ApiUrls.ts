@@ -7,5 +7,6 @@ export class ApiUrls {
   static chatUrl: string = 'api/chats/';
   static channelUrl: string = 'api/channels/';
   static privateChats: string = 'api/private-chats';
+  static avatarUrl: string = 'uploads/avatars/';
 
 }

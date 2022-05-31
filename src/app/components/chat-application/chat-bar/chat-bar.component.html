@@ -1,11 +1,13 @@
 <div class="sidenav">
   <div class="channel-list">
     <app-avatar class="chat-item" [chatName]="'Приватные чаты'" [chatUrl]="getPrivateChatUrl()"
+                [image]="currentUser.avatar.path"
                 (click)="onPrivateChatClick()">
     </app-avatar>
     <hr>
     <div *ngFor="let channel of channels">
       <app-avatar class="chat-item" [chatName]="channel.name" [chatUrl]="getChannelUrl(channel.link)"
+                  [image]="channel.avatar.path"
                   (click)="onChannelClick(channel)">
       </app-avatar>
     </div>

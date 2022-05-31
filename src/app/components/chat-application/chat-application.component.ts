@@ -5,6 +5,9 @@ import {Channel} from "../../models/Channel";
 import {ChannelService} from "../../services/channel.service";
 import {Router} from "@angular/router";
 import {ApiUrls} from "../../models/constants/ApiUrls";
+import {User} from "../../models/user";
+import {AuthService} from "../../services/auth.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-chat-application',
@@ -16,6 +19,8 @@ export class ChatApplicationComponent implements OnInit {
   chats: Chat[];
   channels: Channel[];
 
+  currentUser: User;
+
   /**
    * Текущий чат
    */
@@ -26,10 +31,15 @@ export class ChatApplicationComponent implements OnInit {
    */
   currentChannel: Channel;
 
-  constructor(private chatService: ChatService, private channelService: ChannelService, private router: Router) {
+  constructor(private chatService: ChatService,
+              private channelService: ChannelService,
+              private userService: UserService,
+              private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
+    this.setCurrentUser();
     this.redirectToHome();
     this.loadUserChannels();
     this.loadChats();
@@ -95,5 +105,16 @@ export class ChatApplicationComponent implements OnInit {
 
   redirectToHome() {
     this.router.navigate([ApiUrls.privateChats]);
+  }
+
+  setCurrentUser() {
+    this.currentUser = JSON.parse(this.authService.getUser());
+    this.userService.getUser(this.currentUser.id).subscribe({
+      next: (user: User) => {
+        this.currentUser = user;
+        user.token = this.authService.getToken();
+        localStorage.setItem('user', JSON.stringify(user))
+      }
+    });
   }
 }

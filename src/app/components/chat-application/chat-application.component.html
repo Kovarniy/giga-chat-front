@@ -1,6 +1,7 @@
 <div class="application d-flex flex-row">
   <div class="chat-bar">
     <app-chat-bar
+      [currentUser]="currentUser"
       [chats]="chats"
       [channels]="channels"
       (chatOpenEvent)="onChatOpen($event)"
@@ -10,7 +11,7 @@
   </div>
 
   <div class="chat-form">
-    <app-chat-form *ngIf="currentChat" [changeChat]="currentChat" [currentChannel]="currentChannel">
+    <app-chat-form *ngIf="currentChat" [currentChannel]="currentChannel" [changeChat]="currentChat">
 
     </app-chat-form>
   </div>
