@@ -13,9 +13,13 @@
     background-color: #C9C9C9;
 
     .chat-item {
-      margin-top: 10px;
+      margin: 10px;
       display: flex;
       justify-content: center;
+    }
+
+    hr {
+      margin: 0;
     }
 
   }
@@ -25,15 +29,6 @@
     background-color: #E8E8E8;
     z-index: 1;
   }
-}
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
 }
 
 /* When you mouse over the navigation links, change their color */

@@ -59,31 +59,6 @@ export class ChatApplicationComponent implements OnInit {
     })
   }
 
-  private loadCurrentChannelChats() {
-    this.channelService.getChannelChats(this.currentChannel.id)
-      .subscribe({
-        next: (channelChats: Chat[]) => {
-          this.chats = channelChats;
-          console.log(this.chats)
-        },
-        error: (err => {
-          console.log(err);
-        })
-      });
-  }
-
-  private loadPrivateChats() {
-    this.chatService.getUserPrivateChats()
-      .subscribe({
-        next: (privateChats: Chat[]) => {
-          this.chats = privateChats;
-        },
-        error: (err => {
-          console.log(err);
-        })
-      });
-  }
-
   /**
    * @param chat выбранный чат
    */
@@ -110,4 +85,7 @@ export class ChatApplicationComponent implements OnInit {
     });
   }
 
+  onChannelOpen(channel: Channel) {
+    this.currentChannel = channel;
+  }
 }

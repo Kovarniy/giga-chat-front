@@ -1,5 +1,11 @@
+<div class="channel-info d-flex flex-row align-items-center">
+  <app-avatar class="avatar" *ngIf="currentChannel"
+              [image]="currentChannel.avatar.path"
+              [chatName]="currentChannel.name">
+  </app-avatar>
+  <span class="d-block" [ngClass]="{channelName: currentChannel}" >{{ getChannelName() }}</span>
+</div>
 <hr>
-
 <div *ngIf="chats && chats.length > 0 ; else noData">
   <div class="chat-list" *ngFor="let chat of chats">
     <app-chat-field [setChats]="chat"

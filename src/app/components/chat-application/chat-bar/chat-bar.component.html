@@ -15,6 +15,7 @@
 
   <div class="chat-list">
     <app-chat-list
+      [currentChannel]="currentChannel"
       [chats]="chats"
       (chatOpen)="onChatOpenEvent($event)">
     </app-chat-list>
