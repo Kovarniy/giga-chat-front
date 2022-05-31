@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Chat} from "../../../../models/Chat";
+import {Chat} from "../../../../../models/Chat";
 
 @Component({
   selector: 'app-chat-field',

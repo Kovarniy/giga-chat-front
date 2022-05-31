@@ -1,7 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import * as SockJS from 'sockjs-client';
-import {CompatClient, Stomp} from '@stomp/stompjs';
-import {AuthService} from "../../../services/auth.service";
 import {StompService} from "../../../services/stomp.service";
 import {Message} from "../../../models/Message";
 import {ChatService} from "../../../services/chat.service";
@@ -15,9 +12,9 @@ import {Chat} from "../../../models/Chat";
 export class ChatFormComponent implements OnInit {
 
   // TODO придумать инциализацию стартового чата
-  currentChat;
+  currentChat: Chat;
 
-  @Input() set changeChatState(currentChat: Chat) {
+  @Input() set changeChat(currentChat: Chat) {
     if (!currentChat) {
       return;
     }
@@ -39,7 +36,7 @@ export class ChatFormComponent implements OnInit {
   }
 
   subscribeOnChat() {
-    this.stompService.subscribe( this.currentChat.id, (message) => {
+    this.stompService.subscribe(this.currentChat.id, (message) => {
       const _message: Message = JSON.parse(message.body);
       this.messages.push(_message);
     });
@@ -48,7 +45,7 @@ export class ChatFormComponent implements OnInit {
   loadMessages() {
     this.chatService.getChatMessages(this.currentChat.id)
       .subscribe((messages) => {
-        //TODO возможно тут можно добавить какое-то кэширование сообщений
+        // TODO возможно тут можно добавить какое-то кэширование сообщений
         this.messages = messages;
       });
   }

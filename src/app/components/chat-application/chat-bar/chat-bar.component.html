@@ -11,10 +11,10 @@
   </div>
 
   <div class="chat-list">
-    <app-private-chats *ngIf="chatState === chatTypes.private"
-                       [allChats]="privateChats"
+    <app-chat-list *ngIf="chatState === chatTypes.private"
+                       [chats]="chats"
                        (chatOpen)="onChatOpen($event)">
-    </app-private-chats>
+    </app-chat-list>
   </div>
 
 </div>

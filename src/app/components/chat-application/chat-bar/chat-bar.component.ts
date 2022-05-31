@@ -8,9 +8,8 @@ import {ChatTypes} from "../../../models/constants/ChatTypes";
   styleUrls: ['./chat-bar.component.scss']
 })
 export class ChatBarComponent implements OnInit {
-
-  @Input() allChats: Chat[];
-  @Input() privateChats: Chat[];
+  
+  @Input() chats: Chat[];
 
   @Output() chatOpen: EventEmitter<any> = new EventEmitter();
 
@@ -25,7 +24,8 @@ export class ChatBarComponent implements OnInit {
    */
   chatState: ChatTypes = ChatTypes.privateType;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

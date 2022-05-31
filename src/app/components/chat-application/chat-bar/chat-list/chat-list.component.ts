@@ -2,13 +2,13 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Chat} from "../../../../models/Chat";
 
 @Component({
-  selector: 'app-private-chats',
-  templateUrl: './private-chats.component.html',
-  styleUrls: ['./private-chats.component.scss']
+  selector: 'app-chat-list',
+  templateUrl: './chat-list.component.html',
+  styleUrls: ['./chat-list.component.scss']
 })
-export class PrivateChatsComponent implements OnInit {
+export class ChatListComponent implements OnInit {
 
-  @Input() allChats: Chat[];
+  @Input() chats: Chat[];
   @Output() chatOpen: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
