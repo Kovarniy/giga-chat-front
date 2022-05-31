@@ -3,6 +3,8 @@ import {Chat} from "../../../models/Chat";
 import {Channel} from "../../../models/Channel";
 import {ApiUrls} from "../../../models/constants/ApiUrls";
 import {User} from "../../../models/user";
+import {ChatService} from "../../../services/chat.service";
+import {ChannelService} from "../../../services/channel.service";
 
 @Component({
   selector: 'app-chat-bar',
@@ -11,26 +13,45 @@ import {User} from "../../../models/user";
 })
 export class ChatBarComponent implements OnInit {
 
-  @Input() chats: Chat[];
+  chats: Chat[];
   @Input() channels: Channel[];
   @Input() currentUser: User;
 
   @Output() chatOpenEvent: EventEmitter<Chat> = new EventEmitter();
   @Output() channelOpenEvent: EventEmitter<Channel> = new EventEmitter();
 
-  constructor() {
+  constructor(private chatService: ChatService,
+              private channelService: ChannelService,) {
   }
 
   ngOnInit(): void {
+    this.onPrivateChatClick();
   }
 
   onPrivateChatClick() {
-    console.log('private chats');
-    this.channelOpenEvent.emit(null);
+    this.chatService.getUserPrivateChats()
+      .subscribe({
+        next: (privateChats: Chat[]) => {
+          this.chats = privateChats;
+          this.channelOpenEvent.emit(null);
+        },
+        error: (err => {
+          console.log(err);
+        })
+      });
   }
 
   onChannelClick(channel: Channel) {
-    this.channelOpenEvent.emit(channel);
+    this.channelService.getChannelChats(channel.id)
+      .subscribe({
+        next: (channelChats: Chat[]) => {
+          this.chats = channelChats;
+          this.channelOpenEvent.emit(channel);
+        },
+        error: (err => {
+          console.log(err);
+        })
+      });
   }
 
   onChatOpenEvent(event: Chat) {
@@ -44,4 +65,5 @@ export class ChatBarComponent implements OnInit {
   getPrivateChatUrl() {
     return ApiUrls.privateChats;
   }
+
 }

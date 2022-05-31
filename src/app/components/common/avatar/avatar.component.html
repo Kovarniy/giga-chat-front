@@ -1,7 +1,8 @@
-<div class="circle" [ngClass]="{'standard': this.avatarSizeState == this.avatarSizeStateStates.standard,
+<div (click)="redirect()"
+     class="circle" [ngClass]="{'standard': this.avatarSizeState == this.avatarSizeStateStates.standard,
                                 'small': this.avatarSizeState == this.avatarSizeStateStates.small}">
 
-  <div (click)="redirect()">
+  <div>
     <img *ngIf="!!image ; else textImg" src="{{getAvatarUrl(image)}}" alt="#">
     <ng-template #textImg>
       {{ chatName | chatTextName }}

@@ -2,11 +2,8 @@
   <div class="chat-bar">
     <app-chat-bar
       [currentUser]="currentUser"
-      [chats]="chats"
       [channels]="channels"
-      (chatOpenEvent)="onChatOpen($event)"
-      (channelOpenEvent)="onChannelOpen($event)"
-    >
+      (chatOpenEvent)="onChatOpen($event)">
     </app-chat-bar>
   </div>
 

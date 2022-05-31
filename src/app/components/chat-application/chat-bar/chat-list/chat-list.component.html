@@ -1,9 +1,15 @@
 <hr>
 
-<div class="chat-list" *ngFor="let chat of chats">
-  <app-chat-field [setChats]="chat"
-                  (chatOpen)="onChatOpen($event)"
-                  [ngClass]="{selected: currentChat?.id === chat.id}">
+<div *ngIf="chats && chats.length > 0 ; else noData">
+  <div class="chat-list" *ngFor="let chat of chats">
+    <app-chat-field [setChats]="chat"
+                    (chatOpen)="onChatOpen($event)"
+                    [ngClass]="{selected: currentChat?.id === chat.id}">
 
-  </app-chat-field>
+    </app-chat-field>
+  </div>
 </div>
+
+<ng-template #noData>
+  Пока тут нет чатов...
+</ng-template>

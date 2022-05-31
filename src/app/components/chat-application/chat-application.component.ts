@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ChatService} from "../../services/chat.service";
 import {Chat} from "../../models/Chat";
 import {Channel} from "../../models/Channel";
 import {ChannelService} from "../../services/channel.service";
@@ -8,6 +7,7 @@ import {ApiUrls} from "../../models/constants/ApiUrls";
 import {User} from "../../models/user";
 import {AuthService} from "../../services/auth.service";
 import {UserService} from "../../services/user.service";
+import {ChatService} from "../../services/chat.service";
 
 @Component({
   selector: 'app-chat-application',
@@ -31,18 +31,21 @@ export class ChatApplicationComponent implements OnInit {
    */
   currentChannel: Channel;
 
-  constructor(private chatService: ChatService,
-              private channelService: ChannelService,
+  constructor(private channelService: ChannelService,
+              private chatService: ChatService,
               private userService: UserService,
               private router: Router,
               private authService: AuthService) {
   }
 
   ngOnInit(): void {
+    this.initialApplicationState();
+  }
+
+  private initialApplicationState() {
     this.setCurrentUser();
-    this.redirectToHome();
     this.loadUserChannels();
-    this.loadChats();
+    this.redirectToHome();
   }
 
   private loadUserChannels() {
@@ -54,14 +57,6 @@ export class ChatApplicationComponent implements OnInit {
         console.log(err);
       })
     })
-  }
-
-  private loadChats() {
-    if (this.currentChannel) {
-      this.loadCurrentChannelChats();
-    } else {
-      this.loadPrivateChats();
-    }
   }
 
   private loadCurrentChannelChats() {
@@ -97,16 +92,13 @@ export class ChatApplicationComponent implements OnInit {
     this.currentChat = chat;
   }
 
-  onChannelOpen(channel: Channel) {
-    this.currentChat = null;
-    this.currentChannel = channel;
-    this.loadChats();
-  }
-
   redirectToHome() {
     this.router.navigate([ApiUrls.privateChats]);
   }
 
+  /**
+   * При открытии приложения обновляем данные о пользователе.
+   */
   setCurrentUser() {
     this.currentUser = JSON.parse(this.authService.getUser());
     this.userService.getUser(this.currentUser.id).subscribe({
@@ -117,4 +109,5 @@ export class ChatApplicationComponent implements OnInit {
       }
     });
   }
+
 }

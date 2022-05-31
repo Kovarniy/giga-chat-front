@@ -6,7 +6,6 @@ import {Chat} from "../../../models/Chat";
 import {ChatType} from "../../../models/ChatType";
 import {AuthService} from "../../../services/auth.service";
 import {User} from "../../../models/user";
-import {ChannelService} from "../../../services/channel.service";
 import {Channel} from "../../../models/Channel";
 
 @Component({
@@ -40,7 +39,6 @@ export class ChatFormComponent implements OnInit, AfterViewChecked {
 
   constructor(private stompService: StompService,
               private chatService: ChatService,
-              private channelService: ChannelService,
               private authService: AuthService) {
   }
 
@@ -93,6 +91,9 @@ export class ChatFormComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  /**
+   * Каналы нужны только для чтения новостей.
+   */
   canSendMessage() {
     if (this.currentChat.chatType === ChatType.CHANNEL) {
       const user: User = JSON.parse(this.authService.getUser());
