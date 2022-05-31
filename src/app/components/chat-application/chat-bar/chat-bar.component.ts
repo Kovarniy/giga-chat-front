@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Chat} from "../../../models/Chat";
-import {ChatTypes} from "../../../models/constants/ChatTypes";
 import {Channel} from "../../../models/Channel";
 import {ApiUrls} from "../../../models/constants/ApiUrls";
+import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-chat-bar',
@@ -13,20 +13,10 @@ export class ChatBarComponent implements OnInit {
 
   @Input() chats: Chat[];
   @Input() channels: Channel[];
+  @Input() currentUser: User;
 
   @Output() chatOpenEvent: EventEmitter<Chat> = new EventEmitter();
   @Output() channelOpenEvent: EventEmitter<Channel> = new EventEmitter();
-
-  chatTypes = {
-    public: 'PUBLIC',
-    private: 'PRIVATE',
-    channel: 'CHANNEL'
-  }
-
-  /**
-   * Переключатель для состояния открытых чатов
-   */
-  chatState: ChatTypes = ChatTypes.privateType;
 
   constructor() {
   }

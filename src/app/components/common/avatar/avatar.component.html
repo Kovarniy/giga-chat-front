@@ -2,7 +2,7 @@
                                 'small': this.avatarSizeState == this.avatarSizeStateStates.small}">
 
   <div (click)="redirect()">
-    <img *ngIf="!!image ; else textImg" src="#" alt="#">
+    <img *ngIf="!!image ; else textImg" src="{{getAvatarUrl(image)}}" alt="#">
     <ng-template #textImg>
       {{ chatName | chatTextName }}
     </ng-template>

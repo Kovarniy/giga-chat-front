@@ -3,11 +3,12 @@ import {Avatar} from "./avatar";
 import {AbstractEntity} from "./AbstractEntity";
 import {Message} from "./Message";
 import {ChannelUser} from "./ChannelUser";
+import {ChatType} from "./ChatType";
 
 export interface Chat extends AbstractEntity {
   avatar?: Avatar;
   channel?: Channel;
-  chatType?: string; // TODO возмжно тут можно представить данные по другому
+  chatType?: ChatType;
   name?:	string;
   messages?: Message[];
   chatUsers?: ChannelUser[];
