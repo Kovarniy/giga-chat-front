@@ -1,3 +1,10 @@
-.chat-form {
-  margin-left: 400px; /* Same as the width of the sidebar */
+.application {
+  width: 100vw;
+  height: 100vh;
+  .chat-bar {
+
+  }
+  .chat-form {
+    flex-grow: 1;
+  }
 }

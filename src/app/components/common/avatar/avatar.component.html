@@ -1,11 +1,11 @@
 <div class="circle" [ngClass]="{'standard': this.avatarSizeState == this.avatarSizeStateStates.standard,
                                 'small': this.avatarSizeState == this.avatarSizeStateStates.small}">
 
-  <a [href]="chatUrl" href="#">
+  <div (click)="redirect()">
     <img *ngIf="!!image ; else textImg" src="#" alt="#">
     <ng-template #textImg>
       {{ chatName | chatTextName }}
     </ng-template>
-  </a>
+  </div>
 
 </div>

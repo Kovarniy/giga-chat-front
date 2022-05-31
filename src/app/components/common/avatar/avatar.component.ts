@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-avatar',
@@ -18,9 +19,13 @@ export class AvatarComponent implements OnInit {
     standard: 'standard'
   }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+
   }
 
+  redirect() {
+    this.router.navigate([this.chatUrl])
+  }
 }

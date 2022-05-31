@@ -9,7 +9,7 @@ import {Chat} from "../../../../models/Chat";
 export class ChatListComponent implements OnInit {
 
   @Input() chats: Chat[];
-  @Output() chatOpen: EventEmitter<any> = new EventEmitter();
+  @Output() chatOpen: EventEmitter<Chat> = new EventEmitter();
 
   constructor() { }
 

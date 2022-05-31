@@ -14,7 +14,7 @@ export class ChatFieldComponent implements OnInit {
     this.chat.name = this.chat.name ? this.chat.name : this.chat.id;
   }
 
-  @Output() chatOpen: EventEmitter<any> = new EventEmitter();
+  @Output() chatOpen: EventEmitter<Chat> = new EventEmitter();
 
   constructor() { }
 
