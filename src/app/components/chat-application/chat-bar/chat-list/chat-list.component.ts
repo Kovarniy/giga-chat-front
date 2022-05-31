@@ -17,7 +17,6 @@ export class ChatListComponent implements OnInit {
   }
 
   onChatOpen(event: Chat) {
-    console.log(event);
     this.chatOpen.emit(event);
   }
 }

@@ -4,15 +4,13 @@
     <span class="chat-name">{{ currentChat.name }}</span>
   </div>
 
-  <div class="message-line">
+  <div class="message-line" #scrollMe>
     <div *ngFor="let message of messages">
-      <app-chat-message [message]="message">
-
-      </app-chat-message>
+      <app-chat-message [message]="message"></app-chat-message>
     </div>
   </div>
 
-  <div class="message-input d-flex flex-row">
+  <div class="message-input d-flex flex-row" *ngIf="canUserSendMessage">
   <textarea [(ngModel)]="message"
             placeholder="Введите сообщение...">
   </textarea>

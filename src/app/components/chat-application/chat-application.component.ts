@@ -72,7 +72,6 @@ export class ChatApplicationComponent implements OnInit {
       .subscribe({
         next: (privateChats: Chat[]) => {
           this.chats = privateChats;
-          console.log(this.chats)
         },
         error: (err => {
           console.log(err);
