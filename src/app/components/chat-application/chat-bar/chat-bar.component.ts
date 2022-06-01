@@ -27,7 +27,7 @@ export class ChatBarComponent implements OnInit {
   isAddChanelOpen: boolean = false;
 
   /**
-   * Объект для хранения добавляемого чата
+   * Объект для хранения добавляемого канала
    */
   addedChannel: Channel = {
     about: "",
@@ -88,7 +88,7 @@ export class ChatBarComponent implements OnInit {
   }
 
   /**
-   * Открытие модалки по нажатию на кнопку для добавление канала
+   * Открытие модалки по нажатию на кнопку для добавления канала.
    * @param content
    */
   onAddChannel(content) {
@@ -98,13 +98,13 @@ export class ChatBarComponent implements OnInit {
         this.addChanel(update);
       },
       (close) => {
-        console.log('Чат закрыт ' + close);
+        console.log('Канал закрыт ' + close);
       });
   }
 
   /**
    * Логика добавления канала.
-   * @param eventName тектовое название события.
+   * @param eventName текстовое название события.
    */
   addChanel(eventName: string) {
     if (eventName !== 'add channel' || !this.addedChannel.name
@@ -123,7 +123,7 @@ export class ChatBarComponent implements OnInit {
           console.log(channel);
         },
         error: (err => {
-          console.error(err)
+          console.error()
         })
       });
   }

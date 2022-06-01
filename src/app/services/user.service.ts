@@ -34,11 +34,15 @@ export class UserService {
   }
 
   public getUser(id: String): Observable<User> {
-    return this.httpClient.get<User>(this.domain + ApiUrls.userUrl + id, this.requestOptions);
+    return this.httpClient.get<User>(this.domain + ApiUrls.userUrl + "/" + id, this.requestOptions);
   }
 
   public updateUser(user: User): Observable<User> {
     return this.httpClient.put<User>(this.domain + ApiUrls.userUrl, user, this.requestOptions);
+  }
+
+  public getUserByLogin(login: String): Observable<User> {
+    return this.httpClient.get<User>(this.domain + ApiUrls.userUrl + "?login=" + login, this.requestOptions);
   }
 
 }

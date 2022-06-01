@@ -5,7 +5,7 @@ import {User} from "./User";
 import {Message} from "./Message";
 
 export interface ChatUser extends AbstractEntity {
-  chat: Chat;
-  user: User;
-  lastReadMessage: Message;
+  chat?: Chat;
+  user?: User;
+  lastReadMessage?: Message;
 }
