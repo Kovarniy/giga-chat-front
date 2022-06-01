@@ -32,7 +32,7 @@
     </div>
     <ng-template #privateChat>
       <button class="add-chat-button" (click)="onAddPrivateChat(addPrivateChat)">Начать общение</button>
-      <button class="info-button">Настройки пользователя</button>
+      <button class="info-button" (click)="onSettingsClick(settings)">Настройки пользователя</button>
     </ng-template>
   </div>
 
@@ -40,7 +40,7 @@
 
 <ng-template #addChannelChat let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Добавить канал</h4>
+    <h4 class="modal-title">Добавить чат каналу</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('cross click')"></button>
   </div>
   <div class="modal-body">
@@ -82,7 +82,7 @@
     <form>
       <div class="flex-grow-1">
         <div class="form-group">
-          <label for="chatName">
+          <label for="userLogin">
             Логин пользователя
           </label>
           <input id="userLogin" type="text"
@@ -96,4 +96,8 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('add private chat')">Добавить</button>
   </div>
+</ng-template>
+
+<ng-template #settings let-modal>
+  <app-profile [user]="currentUser" [editable]="true" [modal]="modal"></app-profile>
 </ng-template>

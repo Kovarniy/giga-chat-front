@@ -21,6 +21,7 @@ export class ChatListComponent implements OnInit {
   @Output() chatOpen: EventEmitter<Chat> = new EventEmitter();
 
   currentChat: Chat;
+  currentUser: User;
 
   addedChat: Chat = {
     name: '',
@@ -38,6 +39,7 @@ export class ChatListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setCurrentUser();
   }
 
   getChannelName() {
@@ -136,5 +138,34 @@ export class ChatListComponent implements OnInit {
         }
       }
     });
+  }
+
+  onSettingsClick(settings) {
+    this.modalService.open(settings, {ariaLabelledBy: 'info-button'})
+      .result.then(
+      (update: string) => {
+        // todo дописать логику апдейта пользователя
+        // this.updateUser(update);
+        console.log(this.currentUser)
+      },
+      (close) => {
+        console.log('Окно закрыт ' + close);
+      });
+  }
+
+  setCurrentUser() {
+    this.currentUser = JSON.parse(this.authService.getUser());
+  }
+
+  private updateUser(update: string) {
+    if (update === 'save user') {
+      this.userService.updateUser(this.currentUser).subscribe({
+        next: user => {
+          this.currentUser = user;
+          localStorage.setItem('user', JSON.stringify(user))
+        }
+      });
+
+    }
   }
 }

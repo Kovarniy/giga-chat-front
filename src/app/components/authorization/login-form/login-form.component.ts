@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {ToastrService} from "ngx-toastr";
 import {User} from "../../../models/user";
@@ -15,7 +15,8 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private userService: UserService,
               private toastr: ToastrService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this._createUserForm();
@@ -39,13 +40,12 @@ export class LoginFormComponent implements OnInit {
           localStorage.setItem('token', user.token);
           localStorage.setItem('user', JSON.stringify(user));
 
-          this.toastr.success('Успех!', `
-          Пользователь с именем ${user.login} успешно авторизован!`);
+          this.toastr.success(`
+          Пользователь с именем ${user.login} успешно авторизован!`, 'Успех!');
           this.router.navigate(['/chat-application']);
         },
         error: (error) => {
-          this.toastr.error(`
-          Пользователя с именем ${error.name} не существует!`);
+          this.toastr.error("Неверный логин или пароль", "Ошибка!");
         },
       });
   }
