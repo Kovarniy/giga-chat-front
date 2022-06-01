@@ -1,29 +1,72 @@
-.channel-info {
-  height: 70px;
-  .avatar {
-    margin: 10px;
+.channel {
+  height: 100%;
+
+  .channel-info {
+    height: 70px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+
+    .avatar {
+      margin: 10px;
+    }
+
+    span {
+      flex-grow: 1;
+      text-align: center;
+      font-size: larger;
+      font-weight: bold;
+    }
+
+    .channelName {
+      text-align: left;
+    }
   }
-  span {
+
+  .chat-list {
     flex-grow: 1;
-    text-align: center;
-    font-size: larger;
+
+    .selected {
+      background-color: #5b5b5b;
+      display: block;
+      color: white;
+    }
+
+  }
+
+  .no-chats-message {
     font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
   }
-  .channelName {
-    text-align: left;
-  }
-}
 
-hr {
-  margin: 0;
-}
+  .channel-footer {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.25);
 
-.chat-list {
+    button {
+      height: 50%;
+      width: 100%;
+      border: none;
+      flex-grow: 1;
+    }
 
-  .selected {
-    background-color: #5b5b5b;
-    display: block;
-    color: white;
+    .add-button {
+      background-color: #43B05C;
+      color: white;
+      &:active{
+        background-color: #276533;
+      }
+    }
+
+    .info-button {
+      background-color: #e8e8e8;
+      &:active {
+        background-color: #717171;
+        color: white;
+      }
+    }
   }
 
 }

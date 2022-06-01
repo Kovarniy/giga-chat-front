@@ -1,21 +1,37 @@
-<div class="channel-info d-flex flex-row align-items-center">
-  <app-avatar class="avatar" *ngIf="currentChannel"
-              [image]="currentChannel?.avatar?.path"
-              [chatName]="currentChannel.name">
-  </app-avatar>
-  <span class="d-block" [ngClass]="{channelName: currentChannel}" >{{ getChannelName() }}</span>
-</div>
-<hr>
-<div *ngIf="chats && chats.length > 0 ; else noData">
-  <div class="chat-list" *ngFor="let chat of chats">
-    <app-chat-field [setChats]="chat"
-                    (chatOpen)="onChatOpen($event)"
-                    [ngClass]="{selected: currentChat?.id === chat.id}">
-
-    </app-chat-field>
+<div class="channel d-flex flex-column">
+  <div class="channel-info d-flex flex-row align-items-center">
+    <app-avatar class="avatar" *ngIf="currentChannel"
+                [image]="currentChannel?.avatar?.path"
+                [chatName]="currentChannel.name">
+    </app-avatar>
+    <span class="d-block" [ngClass]="{channelName: currentChannel}">{{ getChannelName() }}</span>
   </div>
+
+  <div class="chat-list">
+    <div *ngIf="chats && chats.length > 0 ; else noData">
+      <div *ngFor="let chat of chats">
+        <app-chat-field [setChats]="chat"
+                        (chatOpen)="onChatOpen($event)"
+                        [ngClass]="{selected: currentChat?.id === chat.id}">
+
+        </app-chat-field>
+      </div>
+    </div>
+    <ng-template #noData>
+      <div class="no-chats-message">
+        Пока тут нет чатов...
+      </div>
+    </ng-template>
+  </div>
+
+
+  <div class="channel-footer">
+    <button *ngIf="canCreateChat()" class="add-button">Добавить чат</button>
+    <button *ngIf="currentChannel; else settings" class="info-button">Информация о канале</button>
+    <ng-template #settings>
+      <button class="info-button">Настройки пользователя</button>
+    </ng-template>
+  </div>
+
 </div>
 
-<ng-template #noData>
-  Пока тут нет чатов...
-</ng-template>

@@ -16,7 +16,6 @@ import {ChatService} from "../../services/chat.service";
 })
 export class ChatApplicationComponent implements OnInit {
 
-  chats: Chat[];
   channels: Channel[];
 
   currentUser: User;

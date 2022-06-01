@@ -103,7 +103,7 @@ export class ChatBarComponent implements OnInit {
   }
 
   /**
-   * Логика добавления чата.
+   * Логика добавления канала.
    * @param eventName тектовое название события.
    */
   addChanel(eventName: string) {

@@ -1,16 +1,16 @@
 <div class="sidenav">
 
   <div class="left-bar">
+    <app-avatar class="channel-item"
+                [chatName]="'Приватные чаты'"
+                [chatUrl]="getPrivateChatUrl()"
+                [image]="currentUser?.avatar?.path"
+                (click)="onPrivateChatClick()">
+    </app-avatar>
+    <hr>
     <div class="channel-list">
-      <app-avatar class="chat-item margin-top-10"
-                  [chatName]="'Приватные чаты'"
-                  [chatUrl]="getPrivateChatUrl()"
-                  [image]="currentUser?.avatar?.path"
-                  (click)="onPrivateChatClick()">
-      </app-avatar>
-      <hr>
       <div *ngFor="let channel of channels">
-        <app-avatar class="chat-item margin-top-10"
+        <app-avatar class="channel-item"
                     [chatName]="channel?.name"
                     [chatUrl]="getChannelUrl(channel.link)"
                     [image]="channel?.avatar?.path"
@@ -19,10 +19,10 @@
       </div>
 
     </div>
-    <div class="add-channel margin-bottom-10">
+    <div class="add-channel">
       <app-avatar [isFromBack]="false"
                   (click)="onAddChannel(content)"
-                  [chatName]="'Настройки'"
+                  [chatName]="'Добавить канал'"
                   [image]="'assets/img/add.png'">
 
       </app-avatar>
@@ -51,7 +51,7 @@
 
         <div class="form-group">
           <label for="channelName">
-            Имя чата
+            Имя канала
           </label>
           <input id="channelName" type="text"
                  name="channelName"
@@ -62,7 +62,7 @@
 
         <div class="form-group">
           <label for="aboutChannel">
-            О чате
+            О канале
           </label>
           <input id="aboutChannel" type="text"
                  name="aboutChannel"
