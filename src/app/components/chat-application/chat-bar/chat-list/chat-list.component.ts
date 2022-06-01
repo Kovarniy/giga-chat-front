@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Chat} from "../../../../models/Chat";
 import {Channel} from "../../../../models/Channel";
+import {User} from "../../../../models/user";
+import {AuthService} from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-chat-list',
@@ -15,7 +17,7 @@ export class ChatListComponent implements OnInit {
   @Output() chatOpen: EventEmitter<Chat> = new EventEmitter();
 
   currentChat: Chat
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -32,5 +34,13 @@ export class ChatListComponent implements OnInit {
     this.chatOpen.emit(chat);
     this.currentChat = chat;
     console.log(this.currentChat)
+  }
+
+  canCreateChat() {
+    if (this.currentChannel) {
+      const user: User = JSON.parse(this.authService.getUser());
+      return this.currentChannel.owner.id === user.id;
+    }
+    return true;
   }
 }

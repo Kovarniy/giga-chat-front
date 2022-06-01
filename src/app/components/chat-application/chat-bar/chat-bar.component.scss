@@ -14,23 +14,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    //scrollbar-width: thin;
 
     .channel-list {
       width: 90%;
       max-width: 90%;
+      flex-grow: 1;
       overflow-y: scroll;
-      .chat-item {
-        display: flex;
-        justify-content: center;
-      }
+    }
+
+    .channel-item {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
     .add-channel {
-      width: 10%;
-      display: flex;
-      justify-content: center;
+      margin: 5px;
     }
 
     hr {
@@ -44,14 +44,6 @@
     background-color: #E8E8E8;
     z-index: 1;
   }
-}
-
-.margin-top-10 {
-  margin-top: 10px;
-}
-
-.margin-bottom-10 {
-  margin-bottom: 10px;
 }
 
 /* The navigation menu links */
