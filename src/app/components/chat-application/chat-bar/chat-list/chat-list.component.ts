@@ -67,8 +67,6 @@ export class ChatListComponent implements OnInit {
       .result.then(
       (update: string) => {
         this.addedChat.chatType = ChatType.PUBLIC;
-        this.addedChat.name = null;
-        this.addedChat.channel = null;
         this.addChat(update);
       },
       (close) => {
@@ -81,6 +79,8 @@ export class ChatListComponent implements OnInit {
       .result.then(
       (update: string) => {
         this.addedChat.chatType = ChatType.PRIVATE;
+        this.addedChat.name = null;
+        this.addedChat.channel = null;
         this.addChat(update);
       },
       (close) => {
