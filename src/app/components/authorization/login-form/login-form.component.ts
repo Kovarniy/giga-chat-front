@@ -44,7 +44,7 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['/chat-application']);
         },
         error: (error) => {
-          this.toastr.error('Неудача!', `
+          this.toastr.error(`
           Пользователя с именем ${error.name} не существует!`);
         },
       });

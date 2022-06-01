@@ -26,12 +26,74 @@
 
 
   <div class="channel-footer">
-    <button *ngIf="canCreateChat()" class="add-button">Добавить чат</button>
-    <button *ngIf="currentChannel; else settings" class="info-button">Информация о канале</button>
-    <ng-template #settings>
+    <div *ngIf="currentChannel; else privateChat">
+      <button *ngIf="canCreateChat()" class="add-chat-button" (click)="onAddChannelChat(addChannelChat)">Добавить чат</button>
+      <button class="info-button">Информация о канале</button>
+    </div>
+    <ng-template #privateChat>
+      <button class="add-chat-button" (click)="onAddPrivateChat(addPrivateChat)">Начать общение</button>
       <button class="info-button">Настройки пользователя</button>
     </ng-template>
   </div>
 
 </div>
 
+<ng-template #addChannelChat let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Добавить канал</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="flex-grow-1">
+        <div class="form-group">
+          <label for="chatName">
+            Имя чата
+          </label>
+          <input id="chatName" type="text"
+                 name="chatName"
+                 [(ngModel)]="addedChat.name"
+                 class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="chatType">
+            Тип чата
+          </label>
+          <select #select id="chatType" (change)="onChatTypeChange(select.value)" class="form-select">
+            <option value="public" #selected>Чат для общения</option>
+            <option value="channel">Канал</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('add channel chat')">Добавить</button>
+  </div>
+</ng-template>
+
+
+<ng-template #addPrivateChat let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Начать общение</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="flex-grow-1">
+        <div class="form-group">
+          <label for="chatName">
+            Логин пользователя
+          </label>
+          <input id="userLogin" type="text"
+                 name="chatName"
+                 [(ngModel)]="privateChatUser.login"
+                 class="form-control">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('add private chat')">Добавить</button>
+  </div>
+</ng-template>

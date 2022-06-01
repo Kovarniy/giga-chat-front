@@ -37,7 +37,7 @@ export class RegisterFormComponent implements OnInit {
           Пользователь с именем ${user.login} успешно зарегистрирован!`);
         },
         error: (error) => {
-          this.toastr.error('Неудача!', `
+          this.toastr.error(`
           Пользователь с именем ${error.name} не может быть зарегистрирован!`);
         },
       });
