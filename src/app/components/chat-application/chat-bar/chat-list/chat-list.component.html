@@ -1,6 +1,6 @@
 <div class="channel-info d-flex flex-row align-items-center">
   <app-avatar class="avatar" *ngIf="currentChannel"
-              [image]="currentChannel.avatar.path"
+              [image]="currentChannel?.avatar?.path"
               [chatName]="currentChannel.name">
   </app-avatar>
   <span class="d-block" [ngClass]="{channelName: currentChannel}" >{{ getChannelName() }}</span>

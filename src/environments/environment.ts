@@ -4,6 +4,7 @@
 
 export const environment = {
   domain: 'http://localhost:8080/',
+  frontDomain: 'http://localhost:4200/',
   production: false
 };
 

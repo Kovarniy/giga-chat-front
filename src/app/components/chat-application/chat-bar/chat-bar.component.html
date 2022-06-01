@@ -1,14 +1,30 @@
 <div class="sidenav">
-  <div class="channel-list">
-    <app-avatar class="chat-item" [chatName]="'Приватные чаты'" [chatUrl]="getPrivateChatUrl()"
-                [image]="currentUser.avatar.path"
-                (click)="onPrivateChatClick()">
-    </app-avatar>
-    <hr>
-    <div *ngFor="let channel of channels">
-      <app-avatar class="chat-item" [chatName]="channel.name" [chatUrl]="getChannelUrl(channel.link)"
-                  [image]="channel.avatar.path"
-                  (click)="onChannelClick(channel)">
+
+  <div class="left-bar">
+    <div class="channel-list">
+      <app-avatar class="chat-item margin-top-10"
+                  [chatName]="'Приватные чаты'"
+                  [chatUrl]="getPrivateChatUrl()"
+                  [image]="currentUser?.avatar?.path"
+                  (click)="onPrivateChatClick()">
+      </app-avatar>
+      <hr>
+      <div *ngFor="let channel of channels">
+        <app-avatar class="chat-item margin-top-10"
+                    [chatName]="channel?.name"
+                    [chatUrl]="getChannelUrl(channel.link)"
+                    [image]="channel?.avatar?.path"
+                    (click)="onChannelClick(channel)">
+        </app-avatar>
+      </div>
+
+    </div>
+    <div class="add-channel margin-bottom-10">
+      <app-avatar [isFromBack]="false"
+                  (click)="onAddChannel(content)"
+                  [chatName]="'Настройки'"
+                  [image]="'assets/img/add.png'">
+
       </app-avatar>
     </div>
   </div>
@@ -22,3 +38,43 @@
   </div>
 
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="add-channel">Добавить канал</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+
+      <div class="flex-grow-1">
+
+        <div class="form-group">
+          <label for="channelName">
+            Имя чата
+          </label>
+          <input id="channelName" type="text"
+                 name="channelName"
+                 #channelName='ngModel'
+                 [(ngModel)]="addedChannel.name"
+                 class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="aboutChannel">
+            О чате
+          </label>
+          <input id="aboutChannel" type="text"
+                 name="aboutChannel"
+                 #aboutChannel='ngModel'
+                 [(ngModel)]="addedChannel.about"
+                 class="form-control">
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('add channel')">Добавить</button>
+  </div>
+</ng-template>

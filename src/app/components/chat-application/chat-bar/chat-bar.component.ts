@@ -5,6 +5,8 @@ import {ApiUrls} from "../../../models/constants/ApiUrls";
 import {User} from "../../../models/user";
 import {ChatService} from "../../../services/chat.service";
 import {ChannelService} from "../../../services/channel.service";
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-chat-bar',
@@ -13,17 +15,30 @@ import {ChannelService} from "../../../services/channel.service";
 })
 export class ChatBarComponent implements OnInit {
 
-  chats: Chat[];
   @Input() channels: Channel[];
   @Input() currentUser: User;
 
   @Output() chatOpenEvent: EventEmitter<Chat> = new EventEmitter();
   @Output() channelOpenEvent: EventEmitter<Channel> = new EventEmitter();
+  @Output() addChanelEvent: EventEmitter<Channel> = new EventEmitter<Channel>();
 
   currentChannel: Channel;
+  chats: Chat[];
+  isAddChanelOpen: boolean = false;
+
+  /**
+   * Объект для хранения добавляемого чата
+   */
+  addedChannel: Channel = {
+    about: "",
+    name: "",
+    owner: undefined
+  }
 
   constructor(private chatService: ChatService,
-              private channelService: ChannelService,) {
+              private channelService: ChannelService,
+              private modalService: NgbModal,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -31,6 +46,8 @@ export class ChatBarComponent implements OnInit {
   }
 
   onPrivateChatClick() {
+    // this.channels.push(...this.channels);
+
     this.chatService.getUserPrivateChats()
       .subscribe({
         next: (privateChats: Chat[]) => {
@@ -70,4 +87,44 @@ export class ChatBarComponent implements OnInit {
     return ApiUrls.privateChats;
   }
 
+  /**
+   * Открытие модалки по нажатию на кнопку для добавление канала
+   * @param content
+   */
+  onAddChannel(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'add-channel'})
+      .result.then(
+      (update: string) => {
+        this.addChanel(update);
+      },
+      (close) => {
+        console.log('Чат закрыт ' + close);
+      });
+  }
+
+  /**
+   * Логика добавления чата.
+   * @param eventName тектовое название события.
+   */
+  addChanel(eventName: string) {
+    if (eventName !== 'add channel' || !this.addedChannel.name
+      || !this.addedChannel.about) {
+      return;
+    }
+
+    this.addedChannel.owner = JSON.parse(this.authService.getUser());
+    this.channelService.createChannel(this.addedChannel)
+      .subscribe({
+        next: (channel) => {
+          if (!channel) {
+            return;
+          }
+          this.addChanelEvent.emit(channel);
+          console.log(channel);
+        },
+        error: (err => {
+          console.error(err)
+        })
+      });
+  }
 }

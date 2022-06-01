@@ -88,4 +88,8 @@ export class ChatApplicationComponent implements OnInit {
   onChannelOpen(channel: Channel) {
     this.currentChannel = channel;
   }
+
+  onAddChannel(channel: Channel) {
+    this.channels.push(channel);
+  }
 }

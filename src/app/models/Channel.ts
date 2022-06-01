@@ -6,8 +6,8 @@ import {ChannelUser} from "./ChannelUser";
 
 export interface Channel extends AbstractEntity {
   about:	string;
-  avatar:	Avatar;
-  link:	string;
+  avatar?:	Avatar;
+  link?:	string;
   name:	string;
   owner: User;
   chats?: Chat[];

@@ -8,12 +8,27 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   display: flex;
 
-  .channel-list {
-    width: 100px;
+  .left-bar {
+    width: 150px;
     background-color: #C9C9C9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    //scrollbar-width: thin;
 
-    .chat-item {
-      margin: 10px;
+    .channel-list {
+      width: 90%;
+      max-width: 90%;
+      overflow-y: scroll;
+      .chat-item {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    .add-channel {
+      width: 10%;
       display: flex;
       justify-content: center;
     }
@@ -25,10 +40,27 @@
   }
 
   .chat-list {
-    width: 300px;
+    width: 250px;
     background-color: #E8E8E8;
     z-index: 1;
   }
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
 }
 
 /* When you mouse over the navigation links, change their color */

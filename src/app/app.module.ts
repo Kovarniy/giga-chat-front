@@ -77,7 +77,7 @@ const appRoutes: Routes = [
     AuthorizationComponent,
     ChatApplicationComponent,
     ChatFieldComponent,
-    ChatListComponent
+    ChatListComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,8 @@ export class AvatarComponent implements OnInit {
 
   @Input() avatarSizeState: 'small' | 'standard' = 'standard';
 
+  @Input() isFromBack: boolean = true;
+
   private domain;
 
   avatarSizeStateStates = {
@@ -35,6 +37,10 @@ export class AvatarComponent implements OnInit {
   }
 
   getAvatarUrl(imageName: string) {
+    if (!this.isFromBack) {
+      return this.environmentService.getValue('frontDomain') + imageName;
+    }
     return this.domain + ApiUrls.avatarUrl + imageName;
   }
+
 }
