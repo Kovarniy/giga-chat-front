@@ -7,6 +7,7 @@ import {ChatType} from "../../../models/ChatType";
 import {AuthService} from "../../../services/auth.service";
 import {User} from "../../../models/user";
 import {Channel} from "../../../models/Channel";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-chat-form',
@@ -39,6 +40,7 @@ export class ChatFormComponent implements OnInit, AfterViewChecked {
 
   constructor(private stompService: StompService,
               private chatService: ChatService,
+              private modalService: NgbModal,
               private authService: AuthService) {
   }
 
@@ -102,4 +104,16 @@ export class ChatFormComponent implements OnInit, AfterViewChecked {
     return true;
   }
 
+  onProfileClick(profile) {
+    if(!this.currentChat.friend) {
+      return;
+    }
+    this.modalService.open(profile, {ariaLabelledBy: 'avatar'})
+      .result.then(
+      () => {
+      },
+      (close) => {
+        console.log('Окно закрыт ' + close);
+      });
+  }
 }

@@ -6,23 +6,20 @@ import {ApiUrls} from "../models/constants/ApiUrls";
 import {EnvironmentService} from "./environment.service";
 import {AuthService} from "./auth.service";
 import {RequestParams} from "../models/constants/RequestParams";
+import {AbstractService} from "./AbstractService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends AbstractService {
 
-  domain = this.environmentService.getValue('domain');
-  requestOptions = {
-    headers: new HttpHeaders(RequestParams.header),
-  };
+  private userUrl = this.domain + ApiUrls.userUrl;
 
-  constructor(private httpClient: HttpClient,
-              private environmentService: EnvironmentService,
-              private authService: AuthService) {
+  constructor(protected override httpClient: HttpClient,
+              protected override environmentService: EnvironmentService,
+              protected override authService: AuthService) {
 
-    const token = authService.getToken();
-    this.requestOptions.headers.set('Authorization', `Bearer ${token}`);
+    super(httpClient, environmentService, authService);
   }
 
   public register(user: User): Observable<User> {
@@ -34,15 +31,15 @@ export class UserService {
   }
 
   public getUser(id: String): Observable<User> {
-    return this.httpClient.get<User>(this.domain + ApiUrls.userUrl + "/" + id, this.requestOptions);
+    return this.httpClient.get<User>(this.userUrl + "/" + id, this.requestOptions);
   }
 
   public updateUser(user: User): Observable<User> {
-    return this.httpClient.put<User>(this.domain + ApiUrls.userUrl, user, this.requestOptions);
+    return this.httpClient.patch<User>(this.userUrl, user, this.requestOptions);
   }
 
   public getUserByLogin(login: String): Observable<User> {
-    return this.httpClient.get<User>(this.domain + ApiUrls.userUrl + "?login=" + login, this.requestOptions);
+    return this.httpClient.get<User>(this.userUrl + "?login=" + login, this.requestOptions);
   }
 
 }

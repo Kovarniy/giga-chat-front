@@ -4,64 +4,64 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('cross click')"></button>
   </div>
 
-    <div class="modal-body">
+  <div class="modal-body">
 
-      <div class="avatar flex-grow-1 d-flex flex-column justify-content-center align-items-center">
-        <app-avatar
-          [chatName]="user.name"
-          [image]="user.avatar?.path">
-        </app-avatar>
-        <h3 class="avatar-username">{{user.name}}</h3>
+    <div class="avatar flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+      <app-avatar
+        [chatName]="user.name"
+        [image]="user.avatar?.path">
+      </app-avatar>
+      <h3 class="avatar-username">{{user.name}}</h3>
+    </div>
+
+    <form>
+
+      <div class="flex-grow-1">
+        <div class="form-group">
+          <label for="userName">Имя</label>
+          <input id="userName" type="text"
+                 name="userName"
+                 [(ngModel)]="user.name"
+                 [disabled]="!editable"
+                 class="form-control">
+        </div>
+      </div>
+      <div class="flex-grow-1">
+        <div class="form-group">
+          <label for="login">Логин</label>
+          <input id="login" type="text"
+                 name="login"
+                 [(ngModel)]="user.login"
+                 [disabled]="true"
+                 class="form-control">
+        </div>
+      </div>
+      <!--        <div class="flex-grow-1" *ngIf="editable">-->
+      <!--          <div class="form-group">-->
+      <!--            <label for="password">Пароль</label>-->
+      <!--            <input id="password" type="password"-->
+      <!--                   name="password"-->
+      <!--                   [(ngModel)]="user.password"-->
+      <!--                   class="form-control">-->
+      <!--          </div>-->
+      <!--        </div>-->
+
+      <div class="flex-grow-1">
+        <div class="form-group">
+          <label for="about">О себе</label>
+          <textarea id="about" placeholder="Пару слов о себе..."
+                    name="about"
+                    [(ngModel)]="user.about"
+                    [disabled]="!editable"
+                    class="form-control"></textarea>
+        </div>
       </div>
 
-      <form>
+    </form>
+  </div>
 
-        <div class="flex-grow-1">
-          <div class="form-group">
-            <label for="userName">Имя</label>
-            <input id="userName" type="text"
-                   name="userName"
-                   [(ngModel)]="user.name"
-                   [disabled] = "!editable"
-                   class="form-control">
-          </div>
-        </div>
-        <div class="flex-grow-1">
-          <div class="form-group">
-            <label for="login">Логин</label>
-            <input id="login" type="text"
-                   name="login"
-                   [(ngModel)]="user.login"
-                   [disabled] = "!editable"
-                   class="form-control">
-          </div>
-        </div>
-        <div class="flex-grow-1" *ngIf="editable">
-          <div class="form-group">
-            <label for="password">Пароль</label>
-            <input id="password" type="password"
-                   name="password"
-                   [(ngModel)]="user.password"
-                   class="form-control">
-          </div>
-        </div>
-
-        <div class="flex-grow-1">
-          <div class="form-group">
-            <label for="about">О себе</label>
-            <textarea id="about" placeholder="Пару слов о себе..."
-                      name="about"
-                      [(ngModel)]="user.about"
-                      [disabled] = "!editable"
-                      class="form-control"></textarea>
-          </div>
-        </div>
-
-      </form>
-    </div>
-
-    <div class="modal-footer" *ngIf="editable">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('save user')">Сохранить</button>
-    </div>
+  <div class="modal-footer" *ngIf="editable">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('save user')">Сохранить</button>
+  </div>
 
 </div>

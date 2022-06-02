@@ -1,9 +1,9 @@
 <div class="chat-field" (click)="onOpenChat()">
-  <app-avatar [chatName]="chat.name"
+  <app-avatar [chatName]="chat.friend ? chat.friend.name : chat.name"
               [avatarSizeState]="'small'"
-              [image]="chat.avatar?.path">
+              [image]="chat.friend ? chat.friend.avatar?.path : chat.avatar?.path">
   </app-avatar>
   <div class="chat-name">
-    {{ chat.name }}
+    {{ chat.friend ? chat.friend.name : chat.name }}
   </div>
 </div>

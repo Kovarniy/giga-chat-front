@@ -1,8 +1,17 @@
 <div class="chat d-flex flex-column">
   <div class="chat-info d-flex align-items-center">
-    <app-avatar class="avatar" [chatName]="currentChat.name"
-                [image]="currentChat.avatar?.path"> </app-avatar>
-    <span class="chat-name">{{ currentChat.name }}</span>
+    <app-avatar class="avatar"
+                [chatName]="currentChat.friend ? currentChat.friend.name : currentChat.name"
+                [image]="currentChat.friend ? currentChat.friend.avatar?.path : currentChat.avatar?.path"
+                (click)="onProfileClick(profile)"
+    >
+    </app-avatar>
+    <span class="chat-name">{{ currentChat.friend ? currentChat.friend.name : currentChat.name }}</span>
+
+    <ng-template #profile let-modal>
+      <app-profile [user]="currentChat.friend" [editable]="false" [modal]="modal"></app-profile>
+    </ng-template>
+
   </div>
 
   <div class="message-line" #scrollMe>

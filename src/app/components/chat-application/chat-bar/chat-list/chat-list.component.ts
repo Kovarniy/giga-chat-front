@@ -144,8 +144,7 @@ export class ChatListComponent implements OnInit {
     this.modalService.open(settings, {ariaLabelledBy: 'info-button'})
       .result.then(
       (update: string) => {
-        // todo дописать логику апдейта пользователя
-        // this.updateUser(update);
+        this.updateUser(update);
         console.log(this.currentUser)
       },
       (close) => {
@@ -158,14 +157,16 @@ export class ChatListComponent implements OnInit {
   }
 
   private updateUser(update: string) {
-    if (update === 'save user') {
+    if (update === 'save user' && this.currentUser.name.trim().length > 0) {
       this.userService.updateUser(this.currentUser).subscribe({
         next: user => {
           this.currentUser = user;
-          localStorage.setItem('user', JSON.stringify(user))
+          this.currentUser.token = this.authService.getToken();
+          localStorage.setItem('user', JSON.stringify(user));
         }
       });
-
+    } else {
+      this.setCurrentUser();
     }
   }
 }
