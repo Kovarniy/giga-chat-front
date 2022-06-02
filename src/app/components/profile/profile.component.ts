@@ -12,7 +12,8 @@ export class ProfileComponent implements OnInit {
   @Input() editable: boolean = false;
   @Input() modal: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
 

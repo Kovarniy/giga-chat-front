@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import {CompatClient, Stomp} from '@stomp/stompjs';
 import {Message} from "../models/Message";
@@ -9,10 +9,12 @@ import {Message} from "../models/Message";
 export class StompService {
 
   stompClient = Stomp.over(function () {
-      return new SockJS('http://localhost:8080/chat');
-    });
+    return new SockJS('http://localhost:8080/chat');
+  });
   chatUrl: string = '/api/chat/';
   topicUrl: string = '/topic/chat/';
+
+  subscriptions = new Set();
 
   constructor() {
   }
@@ -40,9 +42,14 @@ export class StompService {
   }
 
   private subscribeToChat(chatId: string, callback: any) {
-    this.stompClient.subscribe(this.topicUrl + chatId, (message): any => {
-      callback(message);
-    })
+    if (!this.subscriptions.has(chatId)) {
+      this.stompClient.subscribe(this.topicUrl + chatId,
+        (message): any => {
+          callback(message);
+        },
+        {id: chatId});
+      this.subscriptions.add(chatId);
+    }
   }
 
 }

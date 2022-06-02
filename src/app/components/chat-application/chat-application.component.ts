@@ -2,12 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {Chat} from "../../models/Chat";
 import {Channel} from "../../models/Channel";
 import {ChannelService} from "../../services/channel.service";
-import {Router} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from "@angular/router";
 import {ApiUrls} from "../../models/constants/ApiUrls";
 import {User} from "../../models/user";
 import {AuthService} from "../../services/auth.service";
 import {UserService} from "../../services/user.service";
 import {ChatService} from "../../services/chat.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-chat-application',
@@ -91,4 +92,6 @@ export class ChatApplicationComponent implements OnInit {
   onAddChannel(channel: Channel) {
     this.channels.push(channel);
   }
+
+
 }

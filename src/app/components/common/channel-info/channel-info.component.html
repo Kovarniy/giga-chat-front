@@ -1,0 +1,68 @@
+<div class="class-info">
+  <div class="modal-header">
+    <h4 class="modal-title">Информация о канале</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('cross click')"></button>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="avatar flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+      <app-avatar
+        [chatName]="channel.name"
+        [image]="channel.avatar?.path">
+      </app-avatar>
+      <h3 class="avatar-username">{{channel.name}}</h3>
+    </div>
+    <form>
+
+      <div class="flex-grow-1">
+        <div class="form-group">
+          <label for="channelName">Имя</label>
+          <input id="channelName" type="text"
+                 name="name"
+                 [(ngModel)]="channel.name"
+                 [disabled]="!editable"
+                 class="form-control">
+        </div>
+      </div>
+
+      <div class="flex-grow-1">
+        <div class="form-group">
+          <label for="about">О канале</label>
+          <textarea id="about" placeholder="Пару слов о канале..."
+                    name="about"
+                    [(ngModel)]="channel.about"
+                    [disabled]="!editable"
+                    class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="flex-grow-1">
+        <div class="form-group">
+          <label for="link">Ссылка</label>
+          <input id="link"
+                 name="link"
+                 [disabled]="!editable"
+                 [(ngModel)]="channelLink"
+                 class="form-control">
+        </div>
+      </div>
+
+    </form>
+    <div class="subscribers-label">Участники канала</div>
+    <div class="subscribers d-flex flex-column">
+      <div class="subscriber flex-grow-1 d-flex flex-row align-items-center" *ngFor="let user of channelUsers">
+        <app-avatar
+          [image]="user.avatar?.path"
+          [chatName]="user.name"
+          [avatarSizeState]="'small'">
+        </app-avatar>
+        <div class="user-name">
+          {{ user.name }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

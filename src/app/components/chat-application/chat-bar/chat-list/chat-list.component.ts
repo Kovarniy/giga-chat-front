@@ -169,4 +169,15 @@ export class ChatListComponent implements OnInit {
       this.setCurrentUser();
     }
   }
+
+  onChannelInfoClick(channelInfo) {
+    this.modalService.open(channelInfo).result.then(
+      (update) => {
+
+      },
+      (close) => {
+        console.log('Окно закрыт ' + close);
+      }
+    );
+  }
 }
