@@ -28,6 +28,7 @@ import {ChatApplicationComponent} from './components/chat-application/chat-appli
 import {IsNotAuthGuard} from "./guards/is-not-auth.guard";
 import {ChatFieldComponent} from './components/chat-application/chat-bar/chat-list/chat-field/chat-field.component';
 import {ChatListComponent} from "./components/chat-application/chat-bar/chat-list/chat-list.component";
+import { ChannelInfoComponent } from './components/common/channel-info/channel-info.component';
 
 const appRoutes: Routes = [
   {
@@ -39,6 +40,11 @@ const appRoutes: Routes = [
     path: 'authorization',
     component: AuthorizationComponent,
     canActivate: [IsNotAuthGuard]
+  },
+  {
+    path: 'api/channels/join/:link',
+    component: ChatApplicationComponent,
+    canActivate: [IsAuthGuard]
   },
   {
     path: 'api',
@@ -78,6 +84,7 @@ const appRoutes: Routes = [
     ChatApplicationComponent,
     ChatFieldComponent,
     ChatListComponent,
+    ChannelInfoComponent,
   ],
   imports: [
     BrowserModule,

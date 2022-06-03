@@ -28,11 +28,15 @@
   <div class="channel-footer">
     <div *ngIf="currentChannel; else privateChat">
       <button *ngIf="canCreateChat()" class="add-chat-button" (click)="onAddChannelChat(addChannelChat)">Добавить чат</button>
-      <button class="info-button">Информация о канале</button>
+      <button class="info-button" (click)="onChannelInfoClick(channelInfo)">Информация о канале</button>
     </div>
     <ng-template #privateChat>
       <button class="add-chat-button" (click)="onAddPrivateChat(addPrivateChat)">Начать общение</button>
       <button class="info-button" (click)="onSettingsClick(settings)">Настройки пользователя</button>
+    </ng-template>
+
+    <ng-template #channelInfo let-model>
+      <app-channel-info [channel]="currentChannel" [modal]="model"></app-channel-info>
     </ng-template>
   </div>
 

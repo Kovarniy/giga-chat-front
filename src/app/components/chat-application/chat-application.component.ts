@@ -2,12 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import {Chat} from "../../models/Chat";
 import {Channel} from "../../models/Channel";
 import {ChannelService} from "../../services/channel.service";
-import {Router} from "@angular/router";
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree
+} from "@angular/router";
 import {ApiUrls} from "../../models/constants/ApiUrls";
 import {User} from "../../models/user";
 import {AuthService} from "../../services/auth.service";
 import {UserService} from "../../services/user.service";
 import {ChatService} from "../../services/chat.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-chat-application',
@@ -30,7 +38,8 @@ export class ChatApplicationComponent implements OnInit {
    */
   currentChannel: Channel;
 
-  constructor(private channelService: ChannelService,
+  constructor(private route: ActivatedRoute,
+              private channelService: ChannelService,
               private chatService: ChatService,
               private userService: UserService,
               private router: Router,
@@ -38,6 +47,7 @@ export class ChatApplicationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.joinChannel();
     this.initialApplicationState();
   }
 
@@ -90,5 +100,18 @@ export class ChatApplicationComponent implements OnInit {
 
   onAddChannel(channel: Channel) {
     this.channels.push(channel);
+  }
+
+
+  private joinChannel() {
+    let link = this.route.snapshot.paramMap.get('link');
+    console.log(link);
+    if (link) {
+      this.channelService.joinChannel(link).subscribe({
+        next: (channel) => {
+          this.channels.push(channel);
+        }
+      });
+    }
   }
 }

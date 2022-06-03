@@ -52,6 +52,7 @@ export class ChatFormComponent implements OnInit, AfterViewChecked {
   subscribeOnChat() {
     this.stompService.subscribe(this.currentChat.id, (message) => {
       const _message: Message = JSON.parse(message.body);
+      ChatFormComponent.updateMessageSenderName(_message);
       this.messages.push(_message);
     });
   }
@@ -60,6 +61,9 @@ export class ChatFormComponent implements OnInit, AfterViewChecked {
     this.chatService.getChatMessages(this.currentChat.id)
       .subscribe((messages) => {
         // TODO возможно тут можно добавить какое-то кэширование сообщений
+        for (let message of messages) {
+          ChatFormComponent.updateMessageSenderName(message);
+        }
         this.messages = messages;
       });
   }
@@ -115,5 +119,11 @@ export class ChatFormComponent implements OnInit, AfterViewChecked {
       (close) => {
         console.log('Окно закрыт ' + close);
       });
+  }
+
+  private static updateMessageSenderName(message: Message) {
+    if (message.chat.chatType === ChatType.CHANNEL) {
+      message.sender.name = message.chat.name;
+    }
   }
 }

@@ -1,0 +1,17 @@
+.modal-body {
+  height: 640px;
+  overflow-y: scroll;
+  .subscribers-label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .subscribers {
+    .subscriber {
+      border-bottom: 1px solid #717171;
+      height: 60px;
+      .user-name {
+        margin-left: 10px;
+      }
+    }
+  }
+}
