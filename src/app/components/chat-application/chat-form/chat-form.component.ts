@@ -53,7 +53,9 @@ export class ChatFormComponent implements OnInit, AfterViewChecked {
     this.stompService.subscribe(this.currentChat.id, (message) => {
       const _message: Message = JSON.parse(message.body);
       ChatFormComponent.updateMessageSenderName(_message);
-      this.messages.push(_message);
+      if (_message.chat.id === this.currentChat.id) {
+        this.messages.push(_message);
+      }
     });
   }
 
